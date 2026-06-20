@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function ContactPage() {
   const [formStatus, setFormStatus] = useState<"idle" | "sending" | "sent">("idle");
@@ -16,162 +17,134 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-white min-h-screen">
-      {/* Hero */}
-      <section className="bg-brand-primary pt-40 pb-24 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] border-[50px] border-white rounded-full -mr-64 -mt-64" />
-        </div>
-        <div className="max-width-container text-center relative z-10">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
+    <div className="bg-white min-h-screen overflow-x-hidden">
+      {/* Hero Banner - Slide Down */}
+      <section className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+        <Image src="/contact_hero.webp" alt="Contact Us" fill className="object-cover" priority />
+        <div className="absolute inset-0 bg-brand-accent/90 backdrop-blur-[2px]" />
+
+        <div className="relative z-10 max-width-container text-center">
+          <motion.div
+            initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-black mb-6"
+            transition={{ duration: 1 }}
           >
-            Get in <span className="text-brand-secondary">Touch</span>
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-blue-100 text-xl max-w-2xl mx-auto font-medium"
-          >
-            We are here to help you 24/7. Reach out to us for any queries or to start your journey towards recovery.
-          </motion.p>
+            <span className="text-brand-secondary font-bold text-[10px] tracking-[0.4em] uppercase mb-4 block">Reach Out</span>
+            <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-6">
+              Connect with our <span className="text-brand-secondary">Care Team</span>
+            </h1>
+            <p className="text-slate-200 text-base md:text-lg font-medium max-w-2xl mx-auto opacity-90">
+              We are available 24/7 to provide guidance, support, and immediate admission assistance.
+            </p>
+          </motion.div>
         </div>
       </section>
 
-      {/* Contact Cards */}
-      <section className="py-20 -mt-20 relative z-20">
+      {/* Info Cards - Slide Up */}
+      <section className="py-12 -mt-16 relative z-20">
         <div className="max-width-container">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {[
-              { title: "Direct Call", value: "084236 67868", icon: <Phone />, color: "bg-blue-600" },
-              { title: "Email Support", value: "info@jeevan.com", icon: <Mail />, color: "bg-brand-primary" },
-              { title: "Location", value: "Mohanlalganj, UP", icon: <MapPin />, color: "bg-brand-accent" },
-              { title: "Working Hours", value: "Open 24/7", icon: <Clock />, color: "bg-slate-900" },
+              { title: "Direct Helpline", value: "084236 67868", icon: <Phone className="w-5 h-5" />, bg: "bg-brand-primary" },
+              { title: "Support Email", value: "info@jeevan.com", icon: <Mail className="w-5 h-5" />, bg: "bg-brand-accent" },
+              { title: "Center Location", value: "Lucknow, UP", icon: <MapPin className="w-5 h-5" />, bg: "bg-slate-900" },
+              { title: "Availability", value: "Open 24/7", icon: <Clock className="w-5 h-5" />, bg: "bg-brand-secondary" },
             ].map((card, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white p-10 rounded-[2.5rem] shadow-2xl border border-slate-100 hover:scale-105 transition-transform"
+                className="bg-white p-8 rounded-2xl shadow-xl border border-slate-100 flex flex-col items-center text-center"
               >
-                <div className={`w-14 h-14 rounded-2xl ${card.color} text-white flex items-center justify-center mb-8 shadow-lg`}>
+                <div className={`w-12 h-12 rounded-xl ${card.bg} text-white flex items-center justify-center mb-6 shadow-lg`}>
                   {card.icon}
                 </div>
-                <h3 className="text-slate-500 text-xs font-black uppercase tracking-[0.2em] mb-3">{card.title}</h3>
-                <p className="text-slate-900 font-black text-xl">{card.value}</p>
+                <h3 className="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-2">{card.title}</h3>
+                <p className="text-slate-900 font-bold text-sm tracking-tight">{card.value}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Main Form & Info Grid */}
-      <section className="section-padding bg-slate-50">
+      {/* Main Content - Sliding Left/Right */}
+      <section className="section-padding bg-slate-50 border-t border-slate-100">
         <div className="max-width-container">
-          <div className="flex flex-col lg:flex-row gap-24">
-            {/* Form */}
-            <div className="lg:w-1/2">
-              <h2 className="text-4xl font-black mb-10 text-slate-900">Send us a Message</h2>
-              <form onSubmit={handleSubmit} className="space-y-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 ml-2">Full Name</label>
-                    <input 
-                      required
-                      type="text" 
-                      className="w-full px-8 py-5 rounded-3xl bg-white border border-slate-200 focus:border-brand-primary focus:shadow-xl outline-none transition-all font-bold"
-                      placeholder="Your Full Name"
-                    />
+          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+            {/* Form - Slides Left */}
+            <motion.div
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="lg:w-1/2"
+            >
+              <h2 className="text-2xl md:text-3xl font-bold mb-8 text-slate-900 tracking-tight">Direct Inquiry</h2>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Full Name</label>
+                    <input required type="text" className="w-full px-6 py-4 rounded-xl bg-white border border-slate-200 outline-none focus:border-brand-primary transition-all text-sm font-medium" placeholder="Ex: Rahul Kumar" />
                   </div>
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 ml-2">Phone Number</label>
-                    <input 
-                      required
-                      type="tel" 
-                      className="w-full px-8 py-5 rounded-3xl bg-white border border-slate-200 focus:border-brand-primary focus:shadow-xl outline-none transition-all font-bold"
-                      placeholder="+91 00000 00000"
-                    />
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Phone Number</label>
+                    <input required type="tel" className="w-full px-6 py-4 rounded-xl bg-white border border-slate-200 outline-none focus:border-brand-primary transition-all text-sm font-medium" placeholder="+91 00000 00000" />
                   </div>
                 </div>
-                <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 ml-2">Subject</label>
-                  <select className="w-full px-8 py-5 rounded-3xl bg-white border border-slate-200 focus:border-brand-primary focus:shadow-xl outline-none transition-all font-black uppercase tracking-widest text-xs h-[66px]">
-                    <option>Admission Inquiry</option>
-                    <option>General Counseling</option>
-                    <option>Family Support</option>
-                    <option>Others</option>
-                  </select>
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Message Detail</label>
+                  <textarea rows={5} className="w-full px-6 py-4 rounded-xl bg-white border border-slate-200 outline-none focus:border-brand-primary transition-all text-sm font-medium resize-none" placeholder="Tell us about the patient or your requirement..." />
                 </div>
-                <div className="space-y-3">
-                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 ml-2">Message</label>
-                  <textarea 
-                    rows={6}
-                    className="w-full px-8 py-5 rounded-3xl bg-white border border-slate-200 focus:border-brand-primary focus:shadow-xl outline-none transition-all resize-none font-medium"
-                    placeholder="Tell us how we can help..."
-                  />
-                </div>
-                <button 
+                <button
                   disabled={formStatus !== "idle"}
-                  className="w-full bg-brand-primary text-white py-6 rounded-3xl font-black text-sm uppercase tracking-widest flex items-center justify-center gap-4 hover:bg-brand-secondary transition-all disabled:opacity-50 shadow-2xl shadow-brand-primary/20"
+                  className="w-full bg-brand-primary text-white py-4 rounded-xl font-bold text-[11px] uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-brand-secondary transition-all disabled:opacity-50"
                 >
-                  {formStatus === "idle" && <><Send className="w-5 h-5" /> Send Message Now</>}
-                  {formStatus === "sending" && <div className="w-6 h-6 border-4 border-white/30 border-t-white rounded-full animate-spin" />}
-                  {formStatus === "sent" && <><CheckCircle2 className="w-5 h-5" /> Message Sent Successfully!</>}
+                  {formStatus === "idle" && <><Send className="w-4 h-4" /> Finalize Inquiry</>}
+                  {formStatus === "sending" && <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />}
+                  {formStatus === "sent" && <><CheckCircle2 className="w-4 h-4" /> Message Delivered</>}
                 </button>
               </form>
-            </div>
+            </motion.div>
 
-            {/* Info & Map */}
-            <div className="lg:w-1/2 space-y-16">
-              <div>
-                <h2 className="text-4xl font-black mb-10 text-slate-900 text-center lg:text-left">Visit Our Center</h2>
-                <div className="bg-slate-900 text-white p-12 rounded-[3rem] relative overflow-hidden shadow-2xl">
-                  <div className="relative z-10 space-y-10">
-                    <div className="flex gap-8">
-                      <div className="shrink-0 w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center text-brand-secondary shadow-inner">
-                        <MapPin className="w-8 h-8" />
-                      </div>
-                      <div>
-                        <h4 className="text-brand-secondary font-black text-[10px] uppercase tracking-[0.4em] mb-4">Our Address</h4>
-                        <p className="text-xl leading-relaxed font-bold">
-                          GGI Rd, Harikanshgadi,<br />
-                          Mohanlalganj, Lucknow,<br />
-                          Uttar Pradesh 226301
-                        </p>
-                      </div>
+            {/* Info & Map - Slides Right */}
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="lg:w-1/2 space-y-12"
+            >
+              <div className="bg-brand-accent text-white p-10 rounded-3xl relative overflow-hidden shadow-2xl border border-white/5">
+                <div className="relative z-10 space-y-8">
+                  <div className="flex gap-6">
+                    <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-brand-secondary">
+                      <MapPin className="w-6 h-6" />
                     </div>
-                    <div className="flex gap-8">
-                      <div className="shrink-0 w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center text-brand-secondary shadow-inner">
-                        <Phone className="w-8 h-8" />
-                      </div>
-                      <div>
-                        <h4 className="text-brand-secondary font-black text-[10px] uppercase tracking-[0.4em] mb-4">24/7 Helpline</h4>
-                        <p className="text-3xl font-black">084236 67868</p>
-                      </div>
+                    <div>
+                      <h4 className="text-brand-secondary font-bold text-[10px] uppercase tracking-widest mb-3">Our Campus Address</h4>
+                      <p className="text-lg font-bold leading-relaxed opacity-90">
+                        GGI Rd, Harikanshgadi, Mohanlalganj,<br /> Lucknow, UP 226301
+                      </p>
                     </div>
                   </div>
-                  <div className="absolute top-0 right-0 w-80 h-80 bg-brand-secondary/10 rounded-full blur-[120px] -mr-40 -mt-40" />
-                  <div className="absolute bottom-0 left-0 w-60 h-60 bg-brand-primary/10 rounded-full blur-[100px] -ml-30 -mb-30" />
+                  <div className="flex gap-6">
+                    <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-brand-secondary">
+                      <Phone className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="text-brand-secondary font-bold text-[10px] uppercase tracking-widest mb-3">24/7 Clinical Help</h4>
+                      <p className="text-2xl md:text-3xl font-bold tracking-tighter">084236 67868</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* Map */}
-              <div className="h-[450px] bg-white rounded-[3rem] overflow-hidden border border-slate-200 relative shadow-xl">
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3564.089408544078!2d80.957267!3d26.693665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDQxJzM3LjIiTiA4MMKwNTcnMjYuMiJF!5e0!3m2!1sen!2sin!4v171872659301!5m2!1sen!2sin" 
-                  width="100%" 
-                  height="100%" 
-                  style={{ border: 0 }} 
-                  allowFullScreen 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer-when-downgrade"
+              <div className="h-[400px] bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm grayscale group hover:grayscale-0 transition-all duration-700">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3564.089408544078!2d80.957267!3d26.693665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDQxJzM3LjIiTiA4MMKwNTcnMjYuMiJF!5e0!3m2!1sen!2sin!4v171872659301!5m2!1sen!2sin"
+                  width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"
                 />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

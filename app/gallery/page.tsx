@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
-import { Maximize2, X } from "lucide-react";
+import { Maximize2, X, Image as ImageIcon } from "lucide-react";
+import Link from "next/link";
 
 export default function GalleryPage() {
   const [selectedImg, setSelectedImg] = useState<string | null>(null);
@@ -21,60 +22,50 @@ export default function GalleryPage() {
     { src: "/10.webp", category: "Wellness" },
     { src: "/11.webp", category: "Exterior" },
     { src: "/12.webp", category: "Counseling" },
-    { src: "/13.webp", category: "Activities" },
-    { src: "/14.webp", category: "Staff" },
-    { src: "/15.webp", category: "Staff" },
-    { src: "/16.webp", category: "Staff" },
-    { src: "/17.jpeg", category: "Campus" },
-    { src: "/18.jpeg", category: "Campus" },
-    { src: "/19.jpeg", category: "Campus" },
-    { src: "/20.jpeg", category: "Campus" },
-    { src: "/21.jpeg", category: "Campus" },
-    { src: "/22.jpeg", category: "Campus" },
   ];
 
-  const categories = ["All", "Facilities", "Wellness", "Campus", "Activities", "Staff"];
+  const categories = ["All", "Facilities", "Wellness", "Activities", "Exterior"];
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const filteredImages = activeCategory === "All" 
-    ? images 
+  const filteredImages = activeCategory === "All"
+    ? images
     : images.filter(img => img.category === activeCategory);
 
   return (
-    <div className="bg-white min-h-screen">
-      {/* Hero */}
-      <section className="bg-slate-900 pt-40 pb-24 text-white text-center">
-        <div className="max-width-container">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
+    <div className="bg-white min-h-screen overflow-x-hidden">
+      {/* Hero - Slide Down */}
+      <section className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+        <Image src="/gallery_hero.webp" alt="Gallery" fill className="object-cover" priority />
+        <div className="absolute inset-0 bg-brand-accent/90 backdrop-blur-[2px]" />
+
+        <div className="relative z-10 max-width-container text-center">
+          <motion.div
+            initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-black mb-6"
+            transition={{ duration: 1 }}
           >
-            Visual <span className="text-brand-secondary">Gallery</span>
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-white/60 text-xl max-w-2xl mx-auto font-medium"
-          >
-            A glimpse into the life and facilities at Jeevan Parivartan Nasha Mukti Kendra.
-          </motion.p>
+            <span className="text-brand-secondary font-bold text-[10px] tracking-[0.4em] uppercase mb-4 block">Visual Tour</span>
+            <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-6">
+              Our Healing <span className="text-brand-secondary">Environment</span>
+            </h1>
+            <p className="text-slate-200 text-base md:text-lg font-medium max-w-2xl mx-auto opacity-90">
+              A visual glimpse into our state-of-the-art facilities and nurturing campus life.
+            </p>
+          </motion.div>
         </div>
       </section>
 
-      {/* Filter */}
-      <section className="py-12 border-b border-slate-100 flex justify-center sticky top-[72px] z-30 bg-white/80 backdrop-blur-md">
-        <div className="flex flex-wrap gap-4 justify-center px-4 font-black uppercase tracking-widest text-[10px]">
+      {/* Filter - Sticky & Professional */}
+      <section className="py-8 border-b border-slate-100 flex justify-center sticky top-[60px] z-30 bg-white/95 backdrop-blur-md">
+        <div className="flex flex-wrap gap-3 justify-center px-4">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-8 py-3 rounded-full font-black transition-all border ${
-                activeCategory === cat 
-                ? "bg-brand-primary text-white border-brand-primary shadow-xl shadow-brand-primary/20" 
+              className={`px-6 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all border ${activeCategory === cat
+                ? "bg-brand-primary text-white border-brand-primary shadow-lg shadow-brand-primary/20"
                 : "bg-white text-slate-500 border-slate-200 hover:border-brand-primary hover:text-brand-primary"
-              }`}
+                }`}
             >
               {cat}
             </button>
@@ -82,72 +73,80 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* Grid */}
-      <section className="section-padding">
-        <div className="max-width-container">
-          <motion.div 
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10"
-          >
+      {/* Gallery Grid - Sliding From Bottom Staggered */}
+      <section className="section-padding bg-slate-50/50">
+        <div className="max-width-container px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {filteredImages.map((img, i) => (
               <motion.div
                 layout
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.05, duration: 0.5 }}
                 key={img.src}
-                className="group relative h-[400px] rounded-[2.5rem] overflow-hidden shadow-xl hover:shadow-[0_20px_50px_rgba(0,0,0,0.15)] transition-all cursor-pointer border border-slate-100"
+                className="group relative aspect-square rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all cursor-zoom-in border border-slate-100"
                 onClick={() => setSelectedImg(img.src)}
               >
-                <Image 
-                  src={img.src} 
-                  alt={`Gallery Image ${i + 1}`} 
-                  fill 
-                  className="object-cover group-hover:scale-110 transition-transform duration-700" 
+                <Image
+                  src={img.src}
+                  alt={img.category}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-brand-primary/60 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center">
-                   <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center text-brand-primary transform translate-y-8 group-hover:translate-y-0 transition-all shadow-2xl">
-                      <Maximize2 className="w-8 h-8" />
-                   </div>
+                <div className="absolute inset-0 bg-brand-primary/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center">
+                  <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-brand-primary scale-75 group-hover:scale-100 transition-all">
+                    <Maximize2 className="w-5 h-5" />
+                  </div>
                 </div>
-                <div className="absolute bottom-10 left-10 px-6 py-2 bg-black/50 backdrop-blur-md text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-full opacity-0 group-hover:opacity-100 transition-all border border-white/20">
-                   {img.category}
+                <div className="absolute bottom-6 left-6 px-4 py-1.5 bg-black/40 backdrop-blur-md text-white text-[9px] font-bold uppercase tracking-widest rounded-lg opacity-0 group-hover:opacity-100 transition-all border border-white/10">
+                  {img.category}
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Lightbox */}
+      {/* Lightbox Overlay */}
       {selectedImg && (
-        <div 
-          className="fixed inset-0 z-[100] bg-black flex items-center justify-center p-4 md:p-12 cursor-zoom-out"
+        <div
+          className="fixed inset-0 z-[100] bg-brand-accent/95 backdrop-blur-xl flex items-center justify-center p-6 cursor-zoom-out"
           onClick={() => setSelectedImg(null)}
         >
-          <motion.div 
+          <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="relative w-full h-full max-w-6xl max-h-[90vh]"
+            className="relative w-full h-full max-w-5xl"
           >
-            <Image src={selectedImg} alt="Enlarged" fill className="object-contain" />
-            <button 
-              className="absolute -top-16 right-0 text-white hover:text-brand-secondary transition-colors"
-              onClick={() => setSelectedImg(null)}
-            >
-              <X className="w-10 h-10" />
+            <Image src={selectedImg} alt="Center Facility" fill className="object-contain" />
+            <button className="absolute -top-12 right-0 text-white" onClick={() => setSelectedImg(null)}>
+              <X className="w-8 h-8" />
             </button>
           </motion.div>
         </div>
       )}
 
-      {/* Footer CTA */}
-      <section className="section-padding bg-slate-50">
-        <div className="max-width-container text-center">
-          <h2 className="text-4xl font-black mb-6 text-slate-900">Want to See Our Center in Person?</h2>
-          <p className="text-slate-500 mb-12 text-lg font-medium max-w-2xl mx-auto">We welcome family visits and offer tours to help you feel confident about our facilities.</p>
-          <button className="bg-brand-primary text-white px-12 py-5 rounded-full font-black text-sm uppercase tracking-widest hover:bg-brand-secondary transition-all shadow-2xl">
-            Schedule a Visit
-          </button>
+      {/* Closing CTA - Slide Up */}
+      <section className="section-padding bg-white relative overflow-hidden">
+        <div className="max-width-container">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-brand-primary text-white rounded-[2rem] p-12 text-center relative overflow-hidden shadow-2xl border border-white/5"
+          >
+            <h2 className="text-2xl md:text-3xl font-bold mb-6 tracking-tight">Visit Our Healing Sanctuary</h2>
+            <p className="text-slate-200 text-base mb-10 max-w-2xl mx-auto font-medium">Experience our world-class recovery facilities in person. We offer guided tours for families.</p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link href="/contact" className="bg-brand-secondary text-brand-primary px-8 py-3.5 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-white transition-all shadow-lg">
+                Schedule Center Tour
+              </Link>
+              <a href="tel:08423667868" className="bg-white/10 border border-white/20 text-white px-8 py-3.5 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-white/20 transition-all">
+                Contact Office
+              </a>
+            </div>
+            <div className="absolute top-0 left-0 w-40 h-40 bg-brand-secondary/5 rounded-full blur-3xl" />
+          </motion.div>
         </div>
       </section>
     </div>

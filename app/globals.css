@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-primary: #0f172a; /* Deep Navy */
-  --color-brand-secondary: #2563eb; /* Healing Blue */
-  --color-brand-accent: #059669; /* Emerald Green */
-  --color-brand-surface: #f8fafc; /* Soft Slate */
-  --color-brand-muted: #64748b; /* Muted Slate */
+  --color-brand-primary: #064e3b; /* Deep Forest Green */
+  --color-brand-secondary: #eab308; /* Premium Gold */
+  --color-brand-accent: #022c22; /* Darker Green for depth */
+  --color-brand-surface: #f0f7f4; /* Very Soft Greenish White */
+  --color-brand-muted: #64748b; /* Keep muted slate for text */
   --font-heading: "Inter", sans-serif;
   --font-body: "Inter", sans-serif;
 }
 
 :root {
-  --background: #ffffff;
+  --background: #f8fafc;
   --foreground: #0f172a;
 }
 
@@ -22,6 +22,7 @@ body {
   scroll-behavior: smooth;
   font-style: normal !important;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 @layer base {
@@ -68,17 +69,17 @@ body {
 }
 
 .section-padding {
-  padding-top: 8rem;
-  padding-bottom: 8rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
 .section-margin {
-  margin-top: 8rem;
-  margin-bottom: 8rem;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
 }
 
 .card-shadow {
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
 }
 
 .premium-border {

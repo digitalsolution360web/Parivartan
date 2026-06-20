@@ -27,54 +27,36 @@ import {
   Home as HomeIcon,
   Lock,
   Wind,
-  Heart,
-  Zap,
-  Star,
-  Smile,
   PhoneCall
 } from "lucide-react";
 
-const slides = [
-  { img: "/1.webp", title: "Begin Your Path to Healing", subtitle: "Comprehensive addiction treatment & mental health support tailored for you." },
-  { img: "/2.webp", title: "A Supportive Environment", subtitle: "24/7 residential care and professional guidance in a safe haven." },
-  { img: "/3.webp", title: "Restore Your Hope", subtitle: "Specialized therapy programs designed for long-term recovery and peace." },
-  { img: "/4.webp", title: "Empower Your Future", subtitle: "Wellness programs and holistic recovery for a drug-free life." },
-];
-
-const StatCard = ({ stat, index }: { stat: any; index: number }) => {
+// Animated Counter Component
+const Counter = ({ value, suffix = "" }: { value: string; suffix?: string }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [displayValue, setDisplayValue] = useState(0);
+  const isInView = useInView(ref, { once: true });
+  const [count, setCount] = useState(0);
+  const numericValue = parseInt(value.replace(/[^0-9]/g, ""));
 
   useEffect(() => {
     if (isInView) {
-      const controls = animate(0, stat.value, {
+      const controls = animate(0, numericValue, {
         duration: 2,
         ease: "easeOut",
-        onUpdate: (value) => setDisplayValue(Math.floor(value)),
+        onUpdate: (latest) => setCount(Math.floor(latest)),
       });
       return () => controls.stop();
     }
-  }, [isInView, stat.value]);
+  }, [isInView, numericValue]);
 
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: index * 0.1, duration: 0.8 }}
-      className="flex flex-col items-center text-center p-11 rounded-[3rem] bg-brand-secondary/[0.03] border border-brand-secondary/10 shadow-xl shadow-slate-200/40 hover:shadow-2xl hover:shadow-brand-secondary/20 transition-all group hover:-translate-y-3"
-    >
-      <div className={`w-20 h-20 rounded-3xl ${stat.bg} flex items-center justify-center mb-8 shadow-sm group-hover:scale-110 transition-transform ${stat.color}`}>
-        {stat.icon}
-      </div>
-      <h3 className="text-5xl font-bold mb-3 text-slate-900 tracking-tight">
-        {displayValue}{stat.suffix}
-      </h3>
-      <p className="text-sm font-semibold text-slate-500 tracking-widest uppercase leading-none">{stat.label}</p>
-    </motion.div>
-  );
+  return <span ref={ref}>{count}{suffix}</span>;
 };
+
+const slides = [
+  { img: "/1.webp", title: "Holistic Healing for Mind & Body", subtitle: "Comprehensive addiction treatment and mental health support tailored for lasting recovery." },
+  { img: "/2.webp", title: "A Supportive Sanctuary", subtitle: "24/7 professional guidance in a safe, structured, and compassionate environment." },
+  { img: "/3.webp", title: "Restore Your Inner Peace", subtitle: "Specialized therapy programs designed for long-term sobriety and mental wellness." },
+  { img: "/4.webp", title: "Empowering Your Future", subtitle: "Wellness programs and holistic recovery protocols for a balanced, drug-free life." },
+];
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -87,201 +69,104 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="overflow-hidden bg-white">
-      {/* Hero Slider */}
+    <div className="bg-white overflow-x-hidden">
+      {/* Hero Slider - Entry Animation */}
       <section className="relative h-[85vh] w-full overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
-            initial={{ opacity: 0, scale: 1.1 }}
+            initial={{ opacity: 0, scale: 1.05 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
+            transition={{ duration: 1.2 }}
             className="absolute inset-0"
           >
             <Image
               src={slides[currentSlide].img}
-              alt={slides[currentSlide].title}
+              alt="Center Hero"
               fill
-              className="object-cover"
+              className="object-cover object-center"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-black/30 to-transparent" />
           </motion.div>
         </AnimatePresence>
 
         <div className="relative z-10 h-full flex items-center">
           <div className="max-width-container w-full">
-            <div className="max-w-2xl">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <span className="inline-block bg-brand-secondary/20 backdrop-blur-md text-brand-secondary font-bold tracking-wider px-4 py-1.5 rounded-full mb-6 text-xs md:text-sm border border-brand-secondary/30">
-                  Welcome to Jeevan Parivartan
-                </span>
-                <motion.h1
-                  key={`title-${currentSlide}`}
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-8 leading-tight tracking-tight"
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="max-w-3xl"
+            >
+              <p className="text-brand-secondary font-bold text-[10px] tracking-[0.4rem] uppercase mb-4 leading-none">
+                #1 Trusted Recovery Center
+              </p>
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight tracking-tight">
+                {slides[currentSlide].title}
+              </h1>
+              <p className="text-white text-base md:text-lg mb-10 leading-relaxed max-w-xl">
+                {slides[currentSlide].subtitle}
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  href="/contact"
+                  className="bg-brand-secondary text-brand-primary px-8 py-4 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-white transition-all shadow-xl"
                 >
-                  {slides[currentSlide].title}
-                </motion.h1>
-                <motion.p
-                  key={`sub-${currentSlide}`}
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.1 }}
-                  className="text-lg md:text-xl text-slate-200 mb-8 leading-relaxed font-medium"
-                >
-                  {slides[currentSlide].subtitle}
-                </motion.p>
-                <div className="flex flex-col sm:flex-row gap-5">
-                  <Link
-                    href="/contact"
-                    className="bg-brand-primary text-white px-10 py-4 rounded-2xl font-bold text-base hover:bg-brand-secondary transition-all shadow-2xl flex items-center justify-center gap-3 active:scale-95"
-                  >
-                    Get Help Now <ArrowRight className="w-5 h-5" />
-                  </Link>
-                  <Link
-                    href="/services"
-                    className="bg-white/10 backdrop-blur-lg text-white border border-white/20 px-10 py-4 rounded-2xl font-bold text-base hover:bg-white/20 transition-all text-center"
-                  >
-                    Our Services
-                  </Link>
+                  Start Healing Now
+                </Link>
+                <div className="flex items-center gap-4 px-2">
+                  <div className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white">
+                    <Phone className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <p className="text-[9px] font-bold text-slate-300 uppercase tracking-widest leading-none mb-1">Direct Help</p>
+                    <p className="text-base font-bold text-white tracking-tight">084236 67868</p>
+                  </div>
                 </div>
-              </motion.div>
-            </div>
+              </div>
+            </motion.div>
           </div>
         </div>
 
-        {/* Slider Navigation Dots */}
-        <div className="absolute bottom-12 right-12 z-20 flex flex-col gap-4">
+        {/* Dots */}
+        <div className="absolute bottom-8 right-8 z-20 flex gap-3">
           {slides.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setCurrentSlide(idx)}
-              className={`h-1.5 rounded-full transition-all duration-500 ${idx === currentSlide ? "bg-brand-secondary w-12" : "bg-white/30 w-6 hover:bg-white/50"
-                }`}
+              className={`h-1.5 rounded-full transition-all duration-500 ${idx === currentSlide ? "bg-brand-secondary w-10" : "bg-white/40 w-4 hover:bg-white"}`}
             />
           ))}
         </div>
       </section>
 
-
-
-      {/* Featured Stats */}
-      <section className=" py-24">
-        <div className="max-width-container ">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+      {/* Stats Bar - Animated Counter & Different Subtle Background */}
+      <section className="py-12 bg-[#F0FDF4]/50 border-y border-emerald-100">
+        <div className="max-width-container">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { label: "Recovery Rate", value: 98, suffix: "%", icon: <CheckCircle2 />, color: "text-blue-600", bg: "bg-blue-50" },
-              { label: "Active Care", value: 24, suffix: "/7", icon: <ShieldCheck />, color: "text-emerald-600", bg: "bg-emerald-50" },
-              { label: "Success Stories", value: 5000, suffix: "+", icon: <HeartPulse />, color: "text-rose-600", bg: "bg-rose-50" },
-              { label: "Expert Doctors", value: 25, suffix: "+", icon: <UserRoundCheck />, color: "text-indigo-600", bg: "bg-indigo-50" },
+              { label: "Recovery Rate", value: "98", suffix: "%", icon: <CheckCircle2 className="w-5 h-5"/> },
+              { label: "Available Care", value: "24", suffix: "/7", icon: <ShieldCheck className="w-5 h-5"/> },
+              { label: "Success Stories", value: "5000", suffix: "+", icon: <HeartPulse className="w-5 h-5"/> },
+              { label: "Expert Staff", value: "30", suffix: "+", icon: <Users className="w-5 h-5"/> },
             ].map((stat, i) => (
-              <StatCard key={i} stat={stat} index={i} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* About Section - One Large Image with Reveal */}
-      <section className="section-padding bg-[#fcfcfc] relative overflow-hidden">
-        <div className="max-width-container">
-          <div className="flex flex-col lg:flex-row items-center gap-24">
-            <motion.div
-              initial={{ opacity: 0, x: -60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1 }}
-              className="w-full lg:w-1/2 relative"
-            >
-              <div className="relative z-10 rounded-[1rem] overflow-hidden shadow-2xl aspect-[4/5] lg:aspect-[5/4.5] border border-white/20">
-                <Image src="/5.webp" alt="Rehabilitation Center" fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-              </div>
-              <motion.div
-                animate={{ y: [0, -15, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-10 -right-10 bg-brand-primary p-12 rounded-[2.5rem] shadow-3xl z-20 text-white hidden md:block"
-              >
-                <p className="text-5xl font-bold mb-1 tracking-tighter">10+</p>
-                <p className="text-sm font-semibold opacity-80 uppercase tracking-widest leading-none">Years Service</p>
-              </motion.div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1 }}
-              className="w-full lg:w-1/2"
-            >
-              <span className="text-brand-secondary font-bold text-sm mb-6 block tracking-wide">Our Rehabilitation Goal</span>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-10 leading-[1.1] text-slate-900 tracking-tight">Dedicated to your lasting recovery</h2>
-              <p className="text-slate-600 text-lg mb-10 leading-relaxed font-medium">
-                At Jeevan Parivartan Nasha Mukti Kendra, we believe every individual has the strength to overcome addiction. Our center provides a safe haven where healing begins, supported by medical excellence and deep emotional care.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-14 font-semibold text-slate-700">
-                <div className="flex items-center gap-4 hover:text-brand-primary transition-colors cursor-default">
-                  <div className="w-6 h-6 rounded-lg bg-brand-primary/10 text-brand-primary flex items-center justify-center"><CheckCircle2 className="w-3.5 h-3.5" /></div>
-                  Evidence-Based Therapy
-                </div>
-                <div className="flex items-center gap-4 hover:text-brand-primary transition-colors cursor-default">
-                  <div className="w-6 h-6 rounded-lg bg-brand-primary/10 text-brand-primary flex items-center justify-center"><CheckCircle2 className="w-3.5 h-3.5" /></div>
-                  Medical Detox Protocols
-                </div>
-                <div className="flex items-center gap-4 hover:text-brand-primary transition-colors cursor-default">
-                  <div className="w-6 h-6 rounded-lg bg-brand-primary/10 text-brand-primary flex items-center justify-center"><CheckCircle2 className="w-3.5 h-3.5" /></div>
-                  Group Support Sessions
-                </div>
-                <div className="flex items-center gap-4 hover:text-brand-primary transition-colors cursor-default">
-                  <div className="w-6 h-6 rounded-lg bg-brand-primary/10 text-brand-primary flex items-center justify-center"><CheckCircle2 className="w-3.5 h-3.5" /></div>
-                  Holistic Wellness Programs
-                </div>
-              </div>
-              <Link href="/about" className="inline-flex items-center gap-4 bg-slate-900 text-white px-10 py-5 rounded-2xl font-bold text-base hover:bg-black transition-all shadow-xl active:scale-95">
-                More About Our Mission <ArrowRight className="w-5 h-5" />
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section - Staggered Reveal */}
-      <section className="section-padding bg-white relative">
-        <div className="max-width-container">
-          <div className="text-center mb-24">
-            <span className="text-brand-secondary font-bold text-sm mb-4 block tracking-wide">The Journey</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">How we help you heal</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-16">
-            {[
-              { step: "01", title: "Assessment", desc: "Detailed physical and psychological evaluation by our expert team.", icon: <Stethoscope /> },
-              { step: "02", title: "Detoxification", desc: "Supervised medical detox to safely manage withdrawal symptoms.", icon: <Sparkles /> },
-              { step: "03", title: "Rehabilitation", desc: "Intensive counseling, group therapy, and community support.", icon: <Users /> },
-              { step: "04", title: "Aftercare", desc: "Ongoing monitoring and relapse prevention for long-term sobriety.", icon: <Sun /> },
-            ].map((p, i) => (
-              <motion.div
+              <motion.div 
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.8 }}
-                className="relative group"
+                transition={{ delay: i * 0.1 }}
+                className="flex items-center gap-4"
               >
-                <div className="text-8xl font-black text-[#f1f5f9] absolute -top-16 -left-6 group-hover:text-brand-secondary/5 transition-colors z-0 tracking-tighter select-none">
-                  {p.step}
+                <div className="w-10 h-10 rounded-lg bg-brand-primary/5 flex items-center justify-center text-brand-primary">
+                  {stat.icon}
                 </div>
-                <div className="relative z-10 space-y-6">
-                  <div className="w-16 h-16 bg-[#f8fafc] rounded-2xl flex items-center justify-center text-brand-primary shadow-sm border border-slate-50 group-hover:bg-brand-primary group-hover:text-white transition-all transform group-hover:rotate-6">
-                    {p.icon}
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 tracking-tight">{p.title}</h3>
-                  <p className="text-slate-500 font-medium leading-relaxed">{p.desc}</p>
+                <div>
+                  <p className="text-xl md:text-2xl font-bold text-slate-900 tracking-tight leading-none mb-0.5">
+                    <Counter value={stat.value} suffix={stat.suffix} />
+                  </p>
+                  <p className="text-[9px] font-bold text-slate-700 uppercase tracking-widest">{stat.label}</p>
                 </div>
               </motion.div>
             ))}
@@ -289,282 +174,265 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Facilities - Side Revels */}
-      <section className="section-padding bg-[#0f172a] text-white overflow-hidden">
-        <div className="max-width-container">
-          <div className="flex flex-col lg:flex-row justify-between items-end gap-10 mb-24">
-            <motion.div
-              initial={{ opacity: 0, x: -60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1 }}
-              className="max-w-2xl"
-            >
-              <span className="text-brand-secondary font-bold text-sm mb-4 block tracking-wide">Our Environment</span>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight">Modern facilities for best care</h2>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1 }}
-            >
-              <Link href="/gallery" className="bg-white/10 hover:bg-white/20 px-10 py-4 rounded-2xl font-bold text-base border border-white/10 transition-all active:scale-95">
-                View Gallery
-              </Link>
-            </motion.div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {[10, 11, 12].map((imgNum, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.2, duration: 1 }}
-                className={`space-y-10 ${i === 1 ? "pt-16" : ""}`}
-              >
-                <div className="group relative overflow-hidden rounded-[3rem] aspect-[4/5] shadow-2xl">
-                  <Image src={`/${imgNum}.webp`} alt="Facility" fill className="object-cover group-hover:scale-110 transition-transform duration-1000" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex items-end p-12">
-                    <div>
-                      <h4 className="text-2xl font-bold mb-2 tracking-tight">
-                        {i === 0 ? "Yoga & Meditation" : i === 1 ? "Hygienic Dining" : "Peaceful Suites"}
-                      </h4>
-                      <p className="text-slate-400 font-medium">Focused on mental and physical rejuvenation.</p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us - Reveal */}
+      {/* About Us - Sliding Animation & White Background */}
       <section className="section-padding bg-white">
         <div className="max-width-container">
-          <div className="flex flex-col lg:flex-row gap-24 items-center">
-            <motion.div
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            <motion.div 
               initial={{ opacity: 0, x: -60 }}
               whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              transition={{ duration: 1 }}
               className="w-full lg:w-1/2"
             >
-              <div className="relative">
-                <Image src="/13.webp" alt="Professional Care" width={800} height={900} className="rounded-[4rem] shadow-2xl w-full object-cover aspect-square border border-slate-100" />
-                <div className="absolute -left-8 -bottom-8 w-48 h-48 bg-brand-secondary/10 rounded-full blur-[60px] -z-10" />
+              <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[5/4] border border-slate-100">
+                <Image src="/5.webp" alt="Center" fill className="object-cover" />
               </div>
             </motion.div>
-            <motion.div
+
+            <motion.div 
               initial={{ opacity: 0, x: 60 }}
               whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              transition={{ duration: 1 }}
-              className="w-full lg:w-1/2 flex flex-col justify-center"
+              className="w-full lg:w-1/2"
             >
-              <span className="text-brand-secondary font-bold text-sm mb-6 block tracking-wide">Proven Outcomes</span>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 mb-12 leading-[1.1] tracking-tight">Why families choose Jeevan Parivartan?</h2>
-              <div className="space-y-12">
+              <span className="text-brand-secondary font-bold text-[10px] mb-3 block tracking-[0.3em] uppercase">About Our Center</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 leading-tight tracking-tight">Compassionate Care with Medical Precision</h2>
+              <p className="text-slate-700 text-base mb-8 leading-relaxed">
+                Jeevan Parivartan provides a healing environment where scientific protocols meet emotional support. Our multidisciplinary team works tirelessly to rebuild lives affected by addiction.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                 {[
-                  { title: "24/7 Professional Supervision", desc: "Constant medical and psychological monitoring by certified experts.", icon: <Shield /> },
-                  { title: "Personalized Care Plans", desc: "We design unique recovery journeys tailored to specific needs.", icon: <UserRoundCheck /> },
-                  { title: "Holistic Healing Approach", desc: "Equilibrium for mind, body, and soul through yoga and meditation.", icon: <Sparkles /> },
-                  { title: "Relapse Prevention Support", desc: "Lifetime follow-ups and group sessions to ensure lasting sobriety.", icon: <Clock /> },
-                ].map((item, i) => (
-                  <div key={i} className="flex gap-8 group">
-                    <div className="shrink-0 w-16 h-16 bg-[#f8fafc] rounded-[1.5rem] flex items-center justify-center text-brand-primary border border-slate-50 group-hover:bg-brand-primary group-hover:text-white transition-all shadow-sm">
-                      {item.icon}
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-bold text-slate-900 mb-2 tracking-tight">{item.title}</h4>
-                      <p className="text-slate-500 font-medium leading-relaxed">{item.desc}</p>
-                    </div>
+                  "Evidence-Based Care",
+                  "Medical Detox Setup",
+                  "Trauma-Informed Therapy",
+                  "Long-term Support"
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-2 text-slate-700 font-semibold text-[11px] tracking-wide">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-brand-primary" />
+                    {item}
+                  </div>
+                ))}
+              </div>
+              <Link href="/about" className="inline-flex items-center gap-2 bg-brand-primary text-white px-8 py-3.5 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-brand-secondary transition-all">
+                Full Mission Detail <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Process - Sliding Up & Soft Amber Background */}
+      <section className="section-padding bg-[#FFFBF0] border-y border-amber-100">
+        <div className="max-width-container">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-center mb-16"
+          >
+            <span className="text-brand-primary font-bold text-[10px] mb-3 block tracking-[0.3em] uppercase opacity-70">Methodology</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Structured Recovery Pathway</h2>
+          </motion.div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: "Assessment", icon: <Stethoscope />, desc: "Clinical health and psychological vetting." },
+              { title: "Managed Detox", icon: <Sparkles />, desc: "Medical oversight during stabilization." },
+              { title: "Active Therapy", icon: <Users />, desc: "Rebuilding resilience via counseling." },
+              { title: "Permanent Support", icon: <Sun />, desc: "Ensuring long-term sobriety success." },
+            ].map((p, i) => (
+              <motion.div 
+                key={i} 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white border border-slate-200 p-8 rounded-2xl shadow-sm hover:shadow-md transition-all group"
+              >
+                <div className="w-12 h-12 rounded-xl bg-brand-primary/5 flex items-center justify-center text-brand-primary mb-6 group-hover:bg-brand-primary group-hover:text-white transition-colors">
+                  {p.icon}
+                </div>
+                <h3 className="text-base font-bold text-slate-900 mb-3 tracking-tight">{p.title}</h3>
+                <p className="text-slate-700 text-[11px] font-bold leading-relaxed">{p.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Routine & Schedule - Sliding In & Soft Gray Background */}
+      <section className="section-padding bg-[#F8FAFC]">
+        <div className="max-width-container">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch">
+            {/* Daily Schedule Card - Slides from Left */}
+            <motion.div 
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="w-full lg:w-3/5 bg-white border border-slate-200 p-8 md:p-10 rounded-2xl shadow-sm"
+            >
+              <div className="flex items-center gap-3 mb-8">
+                <Clock className="w-5 h-5 text-brand-primary" />
+                <h3 className="text-xl font-bold text-slate-900 tracking-tight">The Blueprint of Change</h3>
+              </div>
+              <div className="space-y-3">
+                {[
+                  { t: "06:30 AM", d: "Spiritual Yoga & Meditation" },
+                  { t: "08:30 AM", d: "Protein-Rich Breakfast" },
+                  { t: "10:30 AM", d: "Clinical Self-Actualization Class" },
+                  { t: "01:00 PM", d: "Nutritional Lunch Reset" },
+                  { t: "04:00 PM", d: "Creative Therapy & Refreshments" },
+                  { t: "08:00 PM", d: "Restoration Dinner" },
+                ].map((row, i) => (
+                  <div key={i} className="flex justify-between py-3 border-b border-slate-100 last:border-0 hover:bg-slate-50 transition-colors px-2 rounded-lg">
+                    <span className="text-brand-primary font-bold text-[11px]">{row.t}</span>
+                    <span className="text-slate-800 font-bold text-[11px] uppercase tracking-wider">{row.d}</span>
                   </div>
                 ))}
               </div>
             </motion.div>
-          </div>
-        </div>
-      </section>
 
-      {/* Anxiety and Depression Comprehensive Section */}
-      <section className="bg-gray-200 py-20 relative overflow-hidden">
-        <div className="max-width-container">
-          {/* Top Branding Section matching screenshot */}
-          <div className="flex flex-col items-center text-center mb-10">
-            <div className="w-24 h-24 rounded-full border-4 border-[#0b4d24] flex items-center justify-center p-4 mb-4 bg-white shadow-xl">
-              <Sun className="w-12 h-12 text-[#0b4d24]" />
-            </div>
-            <h2 className="text-2xl md:text-4xl font-bold text-[#0b4d24] leading-tight mb-2">जीवन परिवर्तन <br className="md:hidden" /> नशामुक्ति केंद्र</h2>
-            <p className="text-xl md:text-2xl font-bold text-slate-700">हमारा संकल्प – नशामुक्त समाज, स्वस्थ समाज</p>
-          </div>
-
-          {/* Main Title Banner */}
-          <div className="bg-[#0b4d24] text-white rounded-3xl p-8 mb-16 text-center shadow-lg transform hover:scale-[1.01] transition-transform">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">एंजाइटी और डिप्रेशन</h2>
-            <p className="text-xl md:text-2xl opacity-90">आप अकेले नहीं हैं, हम आपके साथ हैं।</p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-            {/* Left Column: Problems */}
-            <div className="space-y-8 order-2 lg:order-1">
-              <div className="bg-slate-100/80 p-4 rounded-2xl inline-block mb-4">
-                <h3 className="text-xl font-bold text-slate-800">क्या आप इन समस्याओं से जूझ रहे हैं?</h3>
-              </div>
-              {[
-                { text: "लगातार चिंता और परेशानी", icon: <Frown className="w-6 h-6" /> },
-                { text: "उदासी, अकेलापन और निराशा", icon: <Activity className="w-6 h-6" /> },
-                { text: "थकान, ऊर्जा की कमी और नींद न आना", icon: <BatteryLow className="w-6 h-6" /> },
-                { text: "घबराहट, बेचैनी, घुटन और डर", icon: <Activity className="w-6 h-6" /> },
-                { text: "आत्मविश्वास की कमी और नकारात्मक विचार", icon: <TrendingDown className="w-6 h-6" /> },
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="flex items-center gap-4 group"
-                >
-                  <div className="w-12 h-12 rounded-full bg-slate-800 text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                    {item.icon}
-                  </div>
-                  <p className="font-bold text-slate-700">{item.text}</p>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Middle Image Column */}
-            <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl order-1 lg:order-2">
-              <Image
-                src="/mental_health_transformation.png"
-                alt="Mental Health Transformation"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-            </div>
-
-            {/* Right Column: Solutions */}
-            <div className="space-y-8 order-3 text-right">
-              <div className="bg-[#0b4d24]/10 p-4 rounded-2xl inline-block mb-4">
-                <h3 className="text-xl font-bold text-[#0b4d24]">हम कैसे आपकी मदद करते हैं?</h3>
-              </div>
-              {[
-                { text: "विशेषज्ञ काउंसिलिंग और मनोचिकित्सा", icon: <UserRoundCheck className="w-6 h-6" /> },
-                { text: "योग, ध्यान और माइंडफुलनेस थेरेपी", icon: <Wind className="w-6 h-6" /> },
-                { text: "सकारात्मक माहौल और ग्रुप थेरेपी", icon: <Users className="w-6 h-6" /> },
-                { text: "संतुलित आहार और स्वस्थ जीवनशैली", icon: <Leaf className="w-6 h-6" /> },
-                { text: "जीवन में लक्ष्य, नई दिशा और आत्मविश्वास", icon: <Target className="w-6 h-6" /> },
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="flex items-center gap-4 group flex-row-reverse"
-                >
-                  <div className="w-12 h-12 rounded-full bg-[#0b4d24] text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                    {item.icon}
-                  </div>
-                  <p className=" font-bold text-slate-700">{item.text}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          <div className="text-center mt-16 mb-16">
-            <p className="text-2xl font-bold text-slate-800">
-              उम्मीद है... बदलाव संभव है... और हम आपके साथ हैं।
-            </p>
-          </div>
-
-          {/* Bottom Features Bar */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
-            {[
-              { text: "अनुभवी और प्रशिक्षित स्टाफ", icon: <Award className="w-8 h-8" /> },
-              { text: "सुरक्षित, स्वच्छ और शांत वातावरण", icon: <HomeIcon className="w-8 h-8" /> },
-              { text: "व्यक्तिगत देखभाल और पूर्ण गोपनीयता", icon: <Lock className="w-8 h-8" /> },
-              { text: "24x7 देखभाल और सहयोग", icon: <Clock className="w-8 h-8" /> },
-            ].map((item, index) => (
-              <div key={index} className="flex flex-col items-center text-center p-3 rounded-xl bg-slate-50 border border-slate-100 hover:shadow-xl transition-all">
-                <div className="text-[#0b4d24] mb-4">{item.icon}</div>
-                <p className="font-bold text-slate-800">{item.text}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Dark Green Banner with Circles */}
-          <div className="bg-[#0b4d24] text-white rounded-[1rem] p-12 mb-16 shadow-2xl overflow-hidden relative">
-            <div className="absolute top-0 left-0 w-full h-1.5 bg-white/20" />
-            <h3 className="text-1xl md:text-2xl font-bold text-center mb-8">नशा मुक्त जीवन की ओर पहला कदम बढ़ाएं – हम हैं आपके साथ हर कदम पर।</h3>
-
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
-              {[
-                { text: "मानसिक शांति और स्थिरता", icon: <Wind className="w-8 h-8" /> },
-                { text: "बेहतर रिश्ते और सामाजिक जीवन", icon: <Heart className="w-8 h-8" /> },
-                { text: "आत्मविश्वास और सकारात्मक सोच", icon: <Zap className="w-8 h-8" /> },
-                { text: "उज्जवल भविष्य और सफलता", icon: <Star className="w-8 h-8" /> },
-                { text: "स्वस्थ शरीर, स्वस्थ मन, सुखी जीवन", icon: <Smile className="w-8 h-8" /> },
-              ].map((item, index) => (
-                <div key={index} className="flex flex-col items-center text-center space-y-4 group">
-                  <div className="w-20 h-20 rounded-full border-2 border-white/30 flex items-center justify-center bg-white/10 group-hover:bg-white/20 group-hover:scale-110 transition-all">
-                    {item.icon}
-                  </div>
-                  <p className="text-sm font-bold leading-tight">{item.text}</p>
+            {/* High Visibility Rules Section */}
+            <motion.div 
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="w-full lg:w-2/5 flex flex-col gap-6"
+            >
+              <div className="bg-brand-accent p-10 rounded-[2.5rem] text-white relative overflow-hidden shadow-2xl border border-white/10 group h-full">
+                <div className="flex items-center gap-3 mb-8">
+                  <Shield className="w-6 h-6 text-brand-secondary" />
+                  <h3 className="text-xl font-bold tracking-tight">Main Center Rules</h3>
                 </div>
-              ))}
-            </div>
-          </div>
+                
+                <div className="space-y-6 relative z-10">
+                  {[
+                    { t: "Isolation Period", d: "First 21 days for stabilization (No visitors)." },
+                    { t: "Prohibited Items", d: "Strictly no drugs, alcohol, or tobacco inside." },
+                    { t: "Fixed Routine", d: "Compulsory attendance in all therapy sessions." },
+                    { t: "Behavior", d: "Respectful communication with staff and peers." },
+                    { t: "Phones", d: "Personal phones not allowed during treatment." }
+                  ].map((rule, idx) => (
+                    <div key={idx} className="flex gap-4 group/item">
+                      <div className="w-1.5 h-1.5 bg-brand-secondary rounded-full mt-2 shrink-0 group-hover/item:scale-150 transition-transform" />
+                      <div>
+                        <p className="text-[10px] font-bold text-brand-secondary uppercase tracking-[0.2em] mb-1">{rule.t}</p>
+                        <p className="text-sm font-bold opacity-100 text-white leading-tight">{rule.d}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
 
-          {/* Contact Bar */}
-          <div className="bg-blue-100 text-[#0b4d24] rounded-full p-5 flex flex-col md:flex-row items-center justify-between px-12 shadow-xl">
-            <div className="flex items-center gap-6 mb-4 md:mb-0">
-              <div className="w-12 h-12  border-[#0b4d24] flex items-center justify-center">
-                <PhoneCall className="w-6 h-6 animate-pulse" />
-              </div>
-              <div className="text-left">
-                <p className="text-sm font-bold uppercase tracking-wider">अभी संपर्क करें:</p>
-                <p className="text-4xl font-black">8423667868</p>
-              </div>
-            </div>
-            <p className="text-xl font-bold text-center md:text-right">जीवन को नई दिशा दें हमारे साथ परिवर्तन की शुरुआत करें।</p>
-          </div>
-        </div>
-      </section>
+                <div className="mt-10 pt-8 border-t border-white/10">
+                  <Link href="/contact" className="inline-flex items-center gap-4 text-brand-secondary font-bold text-xs uppercase tracking-widest hover:text-white transition-colors">
+                    Download Full Rulebook <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
 
-      {/* CTA Section */}
-      <section className="p-24 bg-red-100 relative overflow-hidden">
-        <div className="max-width-container text-center relative z-10 text-white">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-2xl md:text-4xl text-black font-bold mb-10 leading-tight tracking-tight"
-          >
-            Your transformation starts with <br /> a single phone call.
-          </motion.h2>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="tel:08423667868"
-              className="bg-white text-brand-primary px-12 py-6 rounded-[2rem] font-bold text-xl shadow-2xl flex items-center justify-center gap-3"
-            >
-              <Phone className="w-6 h-6" /> Call 084236 67868
-            </motion.a>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link href="/contact" className="bg-brand-secondary text-white px-12 py-6 rounded-[2rem] font-bold text-xl shadow-2xl block">
-                Book Admission
-              </Link>
+                {/* Decorative Pattern */}
+                <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-white/5 rounded-full blur-3xl group-hover:bg-white/10 transition-all duration-700" />
+              </div>
             </motion.div>
           </div>
         </div>
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] border-[50px] border-white/5 rounded-full -mr-64 -mt-64" />
+      </section>
+
+      {/* Weekly Diet - Soft Indigo Surface */}
+      <section className="section-padding bg-[#F5F3FF] border-t border-indigo-100">
+        <div className="max-width-container">
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-white border border-indigo-100 rounded-2xl overflow-hidden shadow-xl"
+          >
+            <div className="px-8 py-5 border-b border-indigo-50 flex justify-between items-center bg-indigo-50/20">
+              <h3 className="text-lg font-bold text-slate-900 tracking-tight">Nutrient-Dense Menu</h3>
+              <div className="text-[9px] font-bold text-indigo-600 uppercase tracking-[0.2em] border border-indigo-200 px-3 py-1 rounded-full">
+                Vegetarian Pure
+              </div>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead className="bg-indigo-50/50">
+                  <tr>
+                    <th className="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-indigo-900 border-b border-indigo-100">Day</th>
+                    <th className="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-indigo-900 border-b border-indigo-100">Morning Vitality</th>
+                    <th className="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-indigo-900 border-b border-indigo-100">Lunch Energy</th>
+                    <th className="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-indigo-900 border-b border-indigo-100">Dinner Restoration</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {[
+                    { d: "MON", m: "Paratha Mix", l: "Dal / Rice", n: "Rajma Masala" },
+                    { d: "TUE", m: "Sprouted Chana", l: "Masoor Dal / Veg", n: "Green Harvest" },
+                    { d: "WED", m: "Aloo Paratha", l: "Chana Dal / Rice", n: "Soya Medley" },
+                    { d: "THU", m: "Nutri Daliya", l: "Urad Dal / Rice", n: "Kadhi Pakoda" },
+                    { d: "FRI", m: "Veg Paratha", l: "Tahri Feast", n: "Kofta Masala" },
+                    { d: "SAT", m: "Halwa Vitality", l: "Matar Dal / Veg", n: "Chana Dry" },
+                    { d: "SUN", m: "Poha Medley", l: "Panch Dal / Mix", n: "Shahi Paneer" },
+                  ].map((row, i) => (
+                    <tr key={i} className="hover:bg-indigo-50/30 transition-colors group">
+                      <td className="px-8 py-4 text-xs font-black text-indigo-600 bg-indigo-50/20">{row.d}</td>
+                      <td className="px-8 py-4 text-[11px] font-bold text-slate-800 uppercase tracking-wide group-hover:text-brand-primary">{row.m}</td>
+                      <td className="px-8 py-4 text-[11px] font-bold text-slate-800 uppercase tracking-wide group-hover:text-brand-primary">{row.l}</td>
+                      <td className="px-8 py-4 text-[11px] font-bold text-slate-900 uppercase tracking-wide bg-indigo-50/10 group-hover:bg-indigo-50/30 group-hover:text-brand-primary">{row.n}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Emergency CTA - Soft Professional Light Theme */}
+      <section className="py-16 bg-emerald-50/50 border-y border-emerald-100">
+        <div className="max-width-container">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="bg-white border border-emerald-100 rounded-3xl p-10 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left shadow-xl relative overflow-hidden"
+          >
+            <div className="flex items-center gap-6 relative z-10 text-left">
+              <div className="w-14 h-14 bg-brand-primary rounded-2xl flex items-center justify-center text-brand-secondary shadow-lg">
+                <PhoneCall className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="text-[10px] font-bold text-brand-primary uppercase tracking-[0.2em] mb-1">Emergency Support 24/7</p>
+                <p className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter tabular-nums">084236 67868</p>
+              </div>
+            </div>
+            <Link href="/contact" className="bg-brand-primary text-white px-10 py-4 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-brand-secondary transition-all relative z-10 shadow-lg">
+              Seek Help Now
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Footer Closing CTA - Very Light Balanced Background */}
+      <section className="section-padding bg-slate-50 relative overflow-hidden">
+        <div className="max-width-container text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-2xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">Your Transformation Begins Today.</h2>
+            <p className="text-slate-500 text-base mb-10 max-w-lg mx-auto font-medium">Join the thousands who have reclaimed their lives at Jeevan Parivartan. The best time for recovery is right now.</p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a href="tel:08423667868" className="bg-brand-primary text-white px-8 py-3.5 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-brand-secondary transition-all shadow-lg">
+                Consult a Specialist
+              </a>
+              <Link href="/contact" className="bg-white border border-slate-200 text-slate-900 px-8 py-3.5 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-slate-50 transition-all">
+                Admission Information
+              </Link>
+            </div>
+          </motion.div>
+        </div>
       </section>
     </div>
   );

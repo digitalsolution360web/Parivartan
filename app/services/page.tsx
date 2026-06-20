@@ -15,183 +15,91 @@ import {
   LifeBuoy,
   Utensils,
   Car,
-  ShieldCheck
+  ShieldCheck,
+  ArrowRight
 } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
 const services = [
   {
     title: "1. Assessment & Diagnosis",
-    icon: <ClipboardCheck className="w-10 h-10" />,
-    items: [
-      "Comprehensive addiction assessment",
-      "Psychiatric evaluation",
-      "Psychological assessment",
-      "Physical health screening",
-      "Individual treatment planning"
-    ]
+    icon: <ClipboardCheck className="w-6 h-6" />,
+    items: ["Comprehensive addiction profiling", "Psychiatric evaluation", "Physical health screening", "Personalized treatment maps"]
   },
   {
-    title: "2. Detoxification Services",
-    icon: <Stethoscope className="w-10 h-10" />,
-    items: [
-      "Medically supervised detoxification",
-      "Withdrawal symptom management",
-      "Medication-assisted treatment (where appropriate)",
-      "24/7 medical monitoring"
-    ]
+    title: "2. Clinical Detoxification",
+    icon: <Stethoscope className="w-6 h-6" />,
+    items: ["Medically supervised protocols", "Withdrawal management", "24/7 clinical monitoring", "Biological stabilization"]
   },
   {
-    title: "3. Counseling & Therapy",
-    icon: <MessagesSquare className="w-10 h-10" />,
-    items: [
-      "Individual counseling",
-      "Group therapy sessions",
-      "Cognitive Behavioral Therapy (CBT)",
-      "Motivational Enhancement Therapy (MET)",
-      "Relapse prevention counseling",
-      "Trauma-informed therapy"
-    ]
+    title: "3. Intensive Counseling",
+    icon: <MessagesSquare className="w-6 h-6" />,
+    items: ["Individual depth therapy", "Cognitive Behavioral Therapy", "Relapse prevention training", "Trauma-informed support"]
   },
   {
-    title: "4. Psychiatric Services",
-    icon: <UserPlus className="w-10 h-10" />,
-    items: [
-      "Psychiatric consultation",
-      "Medication management",
-      "Treatment of co-occurring mental health disorders",
-      "Anxiety and depression management"
-    ]
+    title: "4. Psychiatric Support",
+    icon: <UserPlus className="w-6 h-6" />,
+    items: ["Medication management", "Dual-diagnosis treatment", "Mental health restoration", "Emotional equilibrium care"]
   },
   {
-    title: "5. Residential Rehabilitation",
-    icon: <HomeIcon className="w-10 h-10" />,
-    items: [
-      "Inpatient rehabilitation programs",
-      "Structured daily routine",
-      "Therapeutic community support",
-      "Life skills training"
-    ]
+    title: "5. Residential Rehab",
+    icon: <HomeIcon className="w-6 h-6" />,
+    items: ["Safe sanctuary living", "Structured discipline", "Therapeutic community", "Life skills rebuilding"]
   },
   {
-    title: "6. Family Support Services",
-    icon: <Users className="w-10 h-10" />,
-    items: [
-      "Family counseling",
-      "Family education programs",
-      "Relationship restoration sessions",
-      "Caregiver support groups"
-    ]
+    title: "6. Family Restoration",
+    icon: <Users className="w-6 h-6" />,
+    items: ["Relationship restoration", "Family education days", "Caregiver support", "Healing the home unit"]
   },
-  {
-    title: "7. Recovery & Rehabilitation Programs",
-    icon: <Activity className="w-10 h-10" />,
-    items: [
-      "Alcohol addiction treatment",
-      "Drug addiction treatment",
-      "Tobacco/nicotine cessation programs",
-      "Behavioral addiction counseling (gaming, internet, gambling, etc.)",
-      "Dual-diagnosis treatment"
-    ]
-  },
-  {
-    title: "8. Wellness & Holistic Care",
-    icon: <Sprout className="w-10 h-10" />,
-    items: [
-      "Yoga and meditation",
-      "Stress management programs",
-      "Physical fitness activities",
-      "Nutritional counseling",
-      "Mindfulness training"
-    ]
-  },
-  {
-    title: "9. Aftercare & Relapse Prevention",
-    icon: <LifeBuoy className="w-10 h-10" />,
-    items: [
-      "Follow-up counseling",
-      "Alumni support groups",
-      "Recovery monitoring",
-      "Relapse prevention planning",
-      "Tele-counseling support"
-    ]
-  },
-  {
-    title: "10. Community & Educational Programs",
-    icon: <GraduationCap className="w-10 h-10" />,
-    items: [
-      "Awareness workshops",
-      "School and college outreach programs",
-      "Corporate de-addiction awareness sessions",
-      "Community support meetings"
-    ]
-  },
-  {
-    title: "11. Emergency & Crisis Support",
-    icon: <Zap className="w-10 h-10" />,
-    items: [
-      "Crisis intervention",
-      "Suicide risk assessment and support",
-      "Emergency referral services"
-    ]
-  }
-];
-
-const facilities = [
-  { text: "24/7 Residential care", icon: <ShieldCheck /> },
-  { text: "Safe and secure accommodation", icon: <ShieldCheck /> },
-  { text: "Recreational activities", icon: <ShieldCheck /> },
-  { text: "Healthy meals and nutrition support", icon: <Utensils /> },
-  { text: "Transportation assistance", icon: <Car /> },
 ];
 
 export default function ServicesPage() {
   return (
-    <div className="bg-slate-50 min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-brand-primary pt-44 pb-32 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] border-[50px] border-white rounded-full -mr-64 -mt-64" />
-        </div>
-        <div className="max-width-container text-center relative z-10 text-white">
-          <motion.h1
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            className="text-2xl md:text-4xl lg:text-3xl font-bold mb-8 tracking-tight"
+    <div className="bg-white overflow-x-hidden">
+      {/* Hero Banner - Slide Down */}
+      <section className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+        <Image src="/3.webp" alt="Services" fill className="object-cover" priority />
+        <div className="absolute inset-0 bg-brand-accent/70 backdrop-blur-[2px]" />
+
+        <div className="relative z-10 max-width-container text-center">
+          <motion.div
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
           >
-            Our Professional Services
-          </motion.h1>
-          <motion.p
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.1 }}
-            className="text-lg md:text-xl text-blue-100 max-w-4xl mx-auto font-medium leading-relaxed opacity-90"
-          >
-            Comprehensive addiction treatment and rehabilitation services tailored to your unique journey.
-          </motion.p>
+            <span className="text-brand-secondary font-bold text-[10px] tracking-[0.4em] uppercase mb-4 block">Our Expertise</span>
+            <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-6">
+              Clinical <span className="text-brand-secondary">Excellence</span>
+            </h1>
+            <p className="text-slate-200 text-base md:text-lg font-medium max-w-2xl mx-auto opacity-90">
+              A comprehensive spectrum of recovery services designed for permanent transformation.
+            </p>
+          </motion.div>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="section-padding">
+      {/* Services Grid - Staggered Entry Animation & Gray Background */}
+      <section className="section-padding bg-[#F8FAFC]">
         <div className="max-width-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <motion.div
-                key={service.title}
-                initial={{ y: 30, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.05, duration: 0.8 }}
-                className="bg-white p-12 rounded-[3.5rem] shadow-xl border border-slate-100 hover:shadow-2xl transition-all h-full flex flex-col group hover:-translate-y-2"
+                className="bg-white p-8 rounded-2xl border border-slate-100 hover:border-brand-primary/20 transition-all shadow-sm group"
               >
-                <div className="w-20 h-20 bg-brand-primary/5 text-brand-primary rounded-3xl flex items-center justify-center mb-10 shadow-inner group-hover:bg-brand-primary group-hover:text-white transition-all transform group-hover:rotate-6">
+                <div className="w-12 h-12 bg-brand-primary/5 text-brand-primary rounded-xl flex items-center justify-center mb-6 transition-colors group-hover:bg-brand-primary group-hover:text-white">
                   {service.icon}
                 </div>
-                <h3 className="text-2xl font-bold mb-8 text-slate-900 border-b border-slate-50 pb-6 tracking-tight leading-tight">{service.title}</h3>
-                <ul className="space-y-4 flex-grow">
+                <h3 className="text-lg font-bold text-slate-900 mb-6 tracking-tight">{service.title}</h3>
+                <ul className="space-y-3">
                   {service.items.map((item, i) => (
-                    <li key={i} className="flex items-start gap-4 text-slate-600 text-[15px] font-medium leading-relaxed">
-                      <div className="w-2 h-2 bg-brand-secondary rounded-full mt-2.5 shrink-0 shadow-sm" />
+                    <li key={i} className="flex items-start gap-3 text-slate-800 text-[11px] font-bold tracking-wide">
+                      <div className="w-1.5 h-1.5 bg-brand-secondary rounded-full mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -202,47 +110,64 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Facilities */}
-      <section className="section-padding bg-[#0f172a] text-white overflow-hidden relative">
-        <div className="max-width-container">
-          <div className="text-center mb-24 relative z-10">
-            <span className="text-brand-secondary font-bold text-sm mb-6 block tracking-wide">Our Quality Standards</span>
-            <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">Additional Premium Facilities</h2>
-            <p className="text-slate-400 max-w-3xl mx-auto font-medium text-lg leading-relaxed">Providing a safe, comfortable, and nurturing environment for your recovery journey.</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
-            {facilities.map((facility, i) => (
+      {/* Facilities - Soft Emerald Background */}
+      <section className="section-padding bg-[#ECFDF5] border-y border-emerald-100 overflow-hidden">
+        <div className="max-width-container text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <span className="text-emerald-600 font-bold text-[10px] mb-4 block tracking-[0.3em] uppercase">Premium Care</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Luxury Healing Environment</h2>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { text: "Bio-Centric Living", icon: <HomeIcon className="w-6 h-6" /> },
+              { text: "Nutritional Support", icon: <Utensils className="w-6 h-6" /> },
+              { text: "Secure Facility", icon: <ShieldCheck className="w-6 h-6" /> },
+            ].map((f, i) => (
               <motion.div
                 key={i}
-                initial={{ scale: 0.9, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true }}
+                initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white/5 border border-white/10 p-12 rounded-[2.5rem] text-center flex flex-col items-center justify-center hover:bg-brand-primary hover:border-brand-primary transition-all group shadow-2xl"
+                viewport={{ once: true }}
+                className="bg-white p-8 rounded-2xl shadow-sm border border-emerald-50 flex items-center gap-6"
               >
-                <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center text-brand-secondary mb-8 shadow-xl group-hover:scale-110 group-hover:bg-white transition-all">
-                  {facility.icon}
-                </div>
-                <span className="text-sm font-bold tracking-tight">{facility.text}</span>
+                <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600">{f.icon}</div>
+                <span className="text-sm font-bold text-slate-800 tracking-tight">{f.text}</span>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA - Closing Section */}
       <section className="section-padding bg-white">
-        <div className="max-width-container text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-10 text-slate-900 leading-tight tracking-tight">Need more detailed information?</h2>
-          <p className="text-slate-500 mb-14 text-lg font-medium max-w-3xl mx-auto leading-relaxed">Contact our 24/7 helpdesk for a detailed consultation about our treatment programs and admission process.</p>
-          <motion.a
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            href="tel:08423667868"
-            className="inline-block bg-brand-primary text-white px-14 py-6 rounded-full font-bold text-lg shadow-[0_20px_50px_rgba(30,58,138,0.3)]"
+        <div className="max-width-container">
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-brand-accent text-white rounded-[3rem] p-10 md:p-16 border border-white/5 relative overflow-hidden shadow-2xl flex flex-col md:flex-row items-center justify-between gap-10"
           >
-            Call 24/7 Helpline: 084236 67868
-          </motion.a>
+            <div className="relative z-10">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4 tracking-tight leading-tight">Need Medical Consultation?</h2>
+              <p className="text-slate-300 text-base font-medium max-w-lg mb-0">Our clinical team is available 24/7 to guide you through our specialized programs.</p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 relative z-10 w-full md:w-auto">
+              <Link href="/contact" className="bg-brand-secondary text-brand-primary px-8 py-4 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-white text-center transition-all shadow-xl">
+                Book Consultation
+              </Link>
+              <a href="tel:08423667868" className="bg-white/5 border border-white/10 text-white px-8 py-4 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-white/10 text-center transition-all">
+                Call Support
+              </a>
+            </div>
+            <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-brand-secondary/5 rounded-full blur-3xl" />
+          </motion.div>
         </div>
       </section>
     </div>

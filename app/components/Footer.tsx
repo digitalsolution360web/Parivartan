@@ -13,30 +13,30 @@ const Instagram = ({ className }: { className?: string }) => (
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0f172a] text-slate-400 pt-24 pb-12">
+    <footer className="bg-[#022c22] text-slate-300 pt-24 pb-12">
       <div className="max-width-container">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           {/* Brand Column */}
           <div className="space-y-8 text-center md:text-left">
             <Link href="/" className="flex flex-col gap-1">
-              <span className="text-3xl font-bold text-white tracking-tight">
-                Jeevan <span className="font-light">Parivartan</span>
+              <span className="text-3xl font-black text-white tracking-tighter">
+                Jeevan <span className="font-light text-brand-secondary">Parivartan</span>
               </span>
-              <span className="text-xs font-semibold tracking-wide text-brand-secondary">
-                Professional De-Addiction Center
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-brand-secondary/80">
+                Premium De-Addiction Center
               </span>
             </Link>
-            <p className="text-base leading-relaxed">
-              We provide compassionate and comprehensive addiction treatment to help you reclaim your life through professional care and holistic recovery.
+            <p className="text-base leading-relaxed opacity-80">
+              Transforming lives through compassionate care, expert medical guidance, and a holistic approach to long-term recovery.
             </p>
             <div className="flex justify-center md:justify-start space-x-6">
-              <a href="#" className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all shadow-xl group">
+              <a href="#" className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-secondary hover:text-brand-primary hover:border-brand-secondary transition-all shadow-xl group">
                 <Facebook className="w-6 h-6 transition-transform group-hover:scale-110" />
               </a>
-              <a href="#" className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all shadow-xl group">
+              <a href="#" className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-secondary hover:text-brand-primary hover:border-brand-secondary transition-all shadow-xl group">
                 <Twitter className="w-6 h-6 transition-transform group-hover:scale-110" />
               </a>
-              <a href="#" className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all shadow-xl group">
+              <a href="#" className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-secondary hover:text-brand-primary hover:border-brand-secondary transition-all shadow-xl group">
                 <Instagram className="w-6 h-6 transition-transform group-hover:scale-110" />
               </a>
             </div>
@@ -44,67 +44,67 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="lg:pl-8 text-center md:text-left">
-            <h3 className="text-white text-lg font-bold mb-8">Navigation</h3>
-            <ul className="space-y-4 font-medium">
+            <h3 className="text-white text-xl font-black mb-8 uppercase tracking-widest">Navigation</h3>
+            <ul className="space-y-4 font-bold">
               <li><Link href="/" className="hover:text-brand-secondary transition-colors">Home</Link></li>
               <li><Link href="/about" className="hover:text-brand-secondary transition-colors">About Us</Link></li>
               <li><Link href="/services" className="hover:text-brand-secondary transition-colors">Services</Link></li>
-              <li><Link href="/doctor" className="hover:text-brand-secondary transition-colors">Doctors</Link></li>
+              <li><Link href="/doctor" className="hover:text-brand-secondary transition-colors">Our Doctors</Link></li>
               <li><Link href="/gallery" className="hover:text-brand-secondary transition-colors">Gallery</Link></li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div className="text-center md:text-left">
-            <h3 className="text-white text-lg font-bold mb-8">Contact Us</h3>
+            <h3 className="text-white text-xl font-black mb-8 uppercase tracking-widest">Contact</h3>
             <ul className="space-y-6">
               <li className="flex items-start gap-4 justify-center md:justify-start">
-                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-brand-secondary shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-brand-secondary shrink-0 border border-white/10">
                   <MapPin className="w-5 h-5" />
                 </div>
-                <span className="text-sm leading-relaxed">
+                <span className="text-sm leading-relaxed opacity-90">
                   GGI Rd, Harikanshgadi,<br />
                   Mohanlalganj, Lucknow,<br />
-                  Uttar Pradesh 226301
+                  UP 226301
                 </span>
               </li>
               <li className="flex items-center gap-4 justify-center md:justify-start">
-                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-brand-secondary shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-brand-secondary shrink-0 border border-white/10">
                   <Phone className="w-5 h-5" />
                 </div>
-                <span className="text-sm font-semibold tracking-wide">084236 67868</span>
+                <span className="text-sm font-bold tracking-wider opacity-90">084236 67868</span>
               </li>
               <li className="flex items-center gap-4 justify-center md:justify-start">
-                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-brand-secondary shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-brand-secondary shrink-0 border border-white/10">
                   <Mail className="w-5 h-5" />
                 </div>
-                <span className="text-sm font-semibold tracking-wide text-xs">info@jeevanparivartan.com</span>
+                <span className="text-xs font-bold tracking-wider opacity-90">info@jeevanparivartan.com</span>
               </li>
             </ul>
           </div>
 
           {/* Emergency Support */}
           <div className="text-center md:text-left">
-            <h3 className="text-white text-lg font-bold mb-8">Emergency Helpline</h3>
-            <div className="bg-gradient-to-br from-brand-primary to-brand-secondary p-8 rounded-[2rem] text-white shadow-2xl relative overflow-hidden group">
+            <h3 className="text-white text-xl font-black mb-8 uppercase tracking-widest">Support</h3>
+            <div className="bg-gradient-to-br from-brand-primary to-[#042f2e] p-8 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group border border-white/10">
               <div className="relative z-10">
-                <p className="text-xs font-bold tracking-widest mb-4 opacity-80 uppercase">Available 24/7</p>
-                <a href="tel:08423667868" className="text-2xl font-black block mb-4 hover:scale-105 transition-transform origin-left tracking-tight">
+                <p className="text-[10px] font-black tracking-[0.3em] mb-4 opacity-70 uppercase">24/7 Helpline</p>
+                <a href="tel:08423667868" className="text-2xl font-black block mb-6 hover:text-brand-secondary transition-colors tracking-tighter">
                   084236 67868
                 </a>
-                <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-bold bg-white/20 hover:bg-white/30 px-6 py-2.5 rounded-full transition-all">
-                  Request Callback
+                <Link href="/contact" className="inline-flex items-center justify-center w-full gap-2 text-xs font-black uppercase tracking-widest bg-brand-secondary text-brand-primary border-b-4 border-amber-600 hover:translate-y-1 hover:border-b-0 py-4 rounded-2xl transition-all">
+                  Request Help
                 </Link>
               </div>
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-white opacity-5 rounded-full group-hover:scale-110 transition-transform duration-700" />
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-brand-secondary opacity-5 rounded-full group-hover:scale-150 transition-transform duration-700" />
             </div>
           </div>
         </div>
 
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-sm">
-          <p>© 2024 Jeevan Parivartan. Helping people lead drug-free lives.</p>
-          <p className="flex items-center gap-2 font-medium">
-            Developed with <Heart className="w-4 h-4 text-red-500 fill-red-500" /> in India
+        <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-xs font-bold tracking-widest uppercase">
+          <p className="opacity-50">© 2024 Jeevan Parivartan. Healing Paths.</p>
+          <p className="flex items-center gap-2">
+            Made with <Heart className="w-4 h-4 text-brand-secondary fill-brand-secondary" /> in Lucknow
           </p>
         </div>
       </div>
