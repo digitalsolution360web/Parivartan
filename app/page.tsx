@@ -103,7 +103,7 @@ export default function Home() {
               <p className="text-brand-secondary font-bold text-[10px] tracking-[0.4rem] uppercase mb-4 leading-none">
                 #1 Trusted Recovery Center
               </p>
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight tracking-tight">
+              <h1 className="text-2xl md:text-4xl lg:text-4xl font-bold text-white mb-6 leading-tight tracking-tight">
                 {slides[currentSlide].title}
               </h1>
               <p className="text-white text-base md:text-lg mb-10 leading-relaxed max-w-xl">
@@ -147,12 +147,12 @@ export default function Home() {
         <div className="max-width-container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { label: "Recovery Rate", value: "98", suffix: "%", icon: <CheckCircle2 className="w-5 h-5"/> },
-              { label: "Available Care", value: "24", suffix: "/7", icon: <ShieldCheck className="w-5 h-5"/> },
-              { label: "Success Stories", value: "5000", suffix: "+", icon: <HeartPulse className="w-5 h-5"/> },
-              { label: "Expert Staff", value: "30", suffix: "+", icon: <Users className="w-5 h-5"/> },
+              { label: "Recovery Rate", value: "98", suffix: "%", icon: <CheckCircle2 className="w-5 h-5" /> },
+              { label: "Available Care", value: "24", suffix: "/7", icon: <ShieldCheck className="w-5 h-5" /> },
+              { label: "Success Stories", value: "5000", suffix: "+", icon: <HeartPulse className="w-5 h-5" /> },
+              { label: "Expert Staff", value: "30", suffix: "+", icon: <Users className="w-5 h-5" /> },
             ].map((stat, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -178,7 +178,7 @@ export default function Home() {
       <section className="section-padding bg-white">
         <div className="max-width-container">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -60 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
@@ -190,7 +190,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 60 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
@@ -223,10 +223,71 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Director Highlight - Home Page */}
+      <section className="py-20 bg-slate-50 relative overflow-hidden">
+        <div className="max-width-container">
+          <div className="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20">
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="w-full lg:w-5/12"
+            >
+              <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white group">
+                <Image
+                  src="/10.webp"
+                  alt="Dr. Jyoti Pal - Director"
+                  width={600}
+                  height={800}
+                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/40 to-transparent opacity-60" />
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="w-full lg:w-7/12"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-0.5 bg-brand-secondary" />
+                <span className="text-brand-secondary font-bold text-[10px] uppercase tracking-[0.4em]">Director's Message</span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-8 tracking-tight leading-tight">
+                Led by Empathy, <br />
+                <span className="text-brand-primary">Driven by Results.</span>
+              </h2>
+              <div className="relative mb-10">
+                <span className="absolute -top-6 -left-4 text-8xl text-brand-primary/10 font-serif leading-none">"</span>
+                <p className="text-lg md:text-xl text-slate-700 font-medium leading-relaxed relative z-10 italic">
+                  At Jeevan Parivartan, we don't just treat addiction; we rediscover the human spirit. Our dedicated team is committed to providing the highest quality care to help you reclaim your life and future.
+                </p>
+              </div>
+              <div>
+                <p className="text-xl font-bold text-slate-900 mb-1">Dr. Jyoti Pal</p>
+                <p className="text-brand-primary font-bold text-[10px] uppercase tracking-[0.3em]">Director - Jeevan Parivartan</p>
+              </div>
+              <div className="mt-10">
+                <Link href="/about" className="inline-flex items-center gap-3 bg-brand-primary text-white px-8 py-4 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-brand-secondary transition-all shadow-lg">
+                  Learn About Our Vision <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+        {/* Background Decor */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-brand-primary/5 rounded-full blur-3xl -mr-32 -mt-32" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-secondary/5 rounded-full blur-3xl -ml-48 -mb-48" />
+      </section>
+
       {/* Process - Sliding Up & Soft Amber Background */}
       <section className="section-padding bg-[#FFFBF0] border-y border-amber-100">
         <div className="max-width-container">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="text-center mb-16"
@@ -241,8 +302,8 @@ export default function Home() {
               { title: "Active Therapy", icon: <Users />, desc: "Rebuilding resilience via counseling." },
               { title: "Permanent Support", icon: <Sun />, desc: "Ensuring long-term sobriety success." },
             ].map((p, i) => (
-              <motion.div 
-                key={i} 
+              <motion.div
+                key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
@@ -265,7 +326,7 @@ export default function Home() {
         <div className="max-width-container">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch">
             {/* Daily Schedule Card - Slides from Left */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -60 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
@@ -293,105 +354,32 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* High Visibility Rules Section */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 60 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="w-full lg:w-2/5 flex flex-col gap-6"
+              className="w-full lg:w-2/5"
             >
-              <div className="bg-brand-accent p-10 rounded-[2.5rem] text-white relative overflow-hidden shadow-2xl border border-white/10 group h-full">
-                <div className="flex items-center gap-3 mb-8">
-                  <Shield className="w-6 h-6 text-brand-secondary" />
-                  <h3 className="text-xl font-bold tracking-tight">Main Center Rules</h3>
-                </div>
-                
-                <div className="space-y-6 relative z-10">
-                  {[
-                    { t: "Isolation Period", d: "First 21 days for stabilization (No visitors)." },
-                    { t: "Prohibited Items", d: "Strictly no drugs, alcohol, or tobacco inside." },
-                    { t: "Fixed Routine", d: "Compulsory attendance in all therapy sessions." },
-                    { t: "Behavior", d: "Respectful communication with staff and peers." },
-                    { t: "Phones", d: "Personal phones not allowed during treatment." }
-                  ].map((rule, idx) => (
-                    <div key={idx} className="flex gap-4 group/item">
-                      <div className="w-1.5 h-1.5 bg-brand-secondary rounded-full mt-2 shrink-0 group-hover/item:scale-150 transition-transform" />
-                      <div>
-                        <p className="text-[10px] font-bold text-brand-secondary uppercase tracking-[0.2em] mb-1">{rule.t}</p>
-                        <p className="text-sm font-bold opacity-100 text-white leading-tight">{rule.d}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-10 pt-8 border-t border-white/10">
-                  <Link href="/contact" className="inline-flex items-center gap-4 text-brand-secondary font-bold text-xs uppercase tracking-widest hover:text-white transition-colors">
-                    Download Full Rulebook <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
-
-                {/* Decorative Pattern */}
-                <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-white/5 rounded-full blur-3xl group-hover:bg-white/10 transition-all duration-700" />
+              <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-100 h-full min-h-[500px]">
+                <Image
+                  src="/16.webp"
+                  alt="Center Rules and Guidelines"
+                  fill
+                  className="object-cover"
+                />
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Weekly Diet - Soft Indigo Surface */}
-      <section className="section-padding bg-[#F5F3FF] border-t border-indigo-100">
-        <div className="max-width-container">
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-white border border-indigo-100 rounded-2xl overflow-hidden shadow-xl"
-          >
-            <div className="px-8 py-5 border-b border-indigo-50 flex justify-between items-center bg-indigo-50/20">
-              <h3 className="text-lg font-bold text-slate-900 tracking-tight">Nutrient-Dense Menu</h3>
-              <div className="text-[9px] font-bold text-indigo-600 uppercase tracking-[0.2em] border border-indigo-200 px-3 py-1 rounded-full">
-                Vegetarian Pure
-              </div>
-            </div>
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
-                <thead className="bg-indigo-50/50">
-                  <tr>
-                    <th className="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-indigo-900 border-b border-indigo-100">Day</th>
-                    <th className="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-indigo-900 border-b border-indigo-100">Morning Vitality</th>
-                    <th className="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-indigo-900 border-b border-indigo-100">Lunch Energy</th>
-                    <th className="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-indigo-900 border-b border-indigo-100">Dinner Restoration</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {[
-                    { d: "MON", m: "Paratha Mix", l: "Dal / Rice", n: "Rajma Masala" },
-                    { d: "TUE", m: "Sprouted Chana", l: "Masoor Dal / Veg", n: "Green Harvest" },
-                    { d: "WED", m: "Aloo Paratha", l: "Chana Dal / Rice", n: "Soya Medley" },
-                    { d: "THU", m: "Nutri Daliya", l: "Urad Dal / Rice", n: "Kadhi Pakoda" },
-                    { d: "FRI", m: "Veg Paratha", l: "Tahri Feast", n: "Kofta Masala" },
-                    { d: "SAT", m: "Halwa Vitality", l: "Matar Dal / Veg", n: "Chana Dry" },
-                    { d: "SUN", m: "Poha Medley", l: "Panch Dal / Mix", n: "Shahi Paneer" },
-                  ].map((row, i) => (
-                    <tr key={i} className="hover:bg-indigo-50/30 transition-colors group">
-                      <td className="px-8 py-4 text-xs font-black text-indigo-600 bg-indigo-50/20">{row.d}</td>
-                      <td className="px-8 py-4 text-[11px] font-bold text-slate-800 uppercase tracking-wide group-hover:text-brand-primary">{row.m}</td>
-                      <td className="px-8 py-4 text-[11px] font-bold text-slate-800 uppercase tracking-wide group-hover:text-brand-primary">{row.l}</td>
-                      <td className="px-8 py-4 text-[11px] font-bold text-slate-900 uppercase tracking-wide bg-indigo-50/10 group-hover:bg-indigo-50/30 group-hover:text-brand-primary">{row.n}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+
 
       {/* Emergency CTA - Soft Professional Light Theme */}
       <section className="py-16 bg-emerald-50/50 border-y border-emerald-100">
         <div className="max-width-container">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}

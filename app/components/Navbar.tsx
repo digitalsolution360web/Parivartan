@@ -58,7 +58,7 @@ const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 className={`text-[11px] font-bold tracking-wider uppercase transition-all hover:text-brand-secondary relative group ${isScrolledState ? "text-slate-200" : "text-white"
-                   }`}
+                  }`}
               >
                 {link.name}
                 <span className={`absolute -bottom-2 left-0 h-0.5 bg-brand-secondary transition-all rounded-full group-hover:w-full ${pathname === link.href ? "w-full" : "w-0"}`}></span>
@@ -68,9 +68,9 @@ const Navbar = () => {
 
           {/* Consultation Button */}
           <div className="hidden lg:block">
-             <Link href="/contact" className={`px-6 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all ${isScrolledState ? "bg-brand-secondary text-brand-primary hover:bg-white" : "bg-white text-brand-primary hover:bg-brand-secondary hover:text-white"}`}>
-                Get Help Now
-             </Link>
+            <Link href="/contact" className={`px-6 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all ${isScrolledState ? "bg-brand-secondary text-brand-primary hover:bg-white" : "bg-white text-brand-primary hover:bg-brand-secondary hover:text-white"}`}>
+              Get Help Now
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
