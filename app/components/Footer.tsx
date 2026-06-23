@@ -17,7 +17,7 @@ const Footer = () => {
       <div className="max-width-container">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           {/* Brand Column */}
-          <div className="space-y-8 text-center md:text-left">
+          <div className="space-y-8 text-left">
             <Link href="/" className="flex flex-col gap-1">
               <span className="text-3xl font-black text-white tracking-tighter">
                 Jeevan <span className="font-light text-brand-secondary">Parivartan</span>
@@ -29,7 +29,7 @@ const Footer = () => {
             <p className="text-base leading-relaxed opacity-80">
               Transforming lives through compassionate care, expert medical guidance, and a holistic approach to long-term recovery.
             </p>
-            <div className="flex justify-center md:justify-start space-x-6">
+            <div className="flex justify-start space-x-6">
               <a href="#" className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-secondary hover:text-brand-primary hover:border-brand-secondary transition-all shadow-xl group">
                 <Facebook className="w-6 h-6 transition-transform group-hover:scale-110" />
               </a>
@@ -43,8 +43,8 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="lg:pl-8 text-center md:text-left">
-            <h3 className="text-white text-xl font-black mb-8 uppercase tracking-widest">Navigation</h3>
+          <div className="lg:pl-8 text-left">
+            <h3 className="text-white text-sm font-bold mb-8 uppercase tracking-widest">Navigation</h3>
             <ul className="space-y-4 font-bold">
               <li><Link href="/" className="hover:text-brand-secondary transition-colors">Home</Link></li>
               <li><Link href="/about" className="hover:text-brand-secondary transition-colors">About Us</Link></li>
@@ -55,10 +55,10 @@ const Footer = () => {
           </div>
 
           {/* Contact Info */}
-          <div className="text-center md:text-left">
-            <h3 className="text-white text-xl font-black mb-8 uppercase tracking-widest">Contact</h3>
+          <div className="text-left">
+            <h3 className="text-white text-sm font-bold mb-8 uppercase tracking-widest">Contact</h3>
             <ul className="space-y-6">
-              <li className="flex items-start gap-4 justify-center md:justify-start">
+              <li className="flex items-start gap-4 justify-start">
                 <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-brand-secondary shrink-0 border border-white/10">
                   <MapPin className="w-5 h-5" />
                 </div>
@@ -68,13 +68,17 @@ const Footer = () => {
                   UP 226301
                 </span>
               </li>
-              <li className="flex items-center gap-4 justify-center md:justify-start">
-                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-brand-secondary shrink-0 border border-white/10">
+              <li className="flex items-start gap-4 justify-start">
+                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-brand-secondary shrink-0 border border-white/10 mt-1">
                   <Phone className="w-5 h-5" />
                 </div>
-                <span className="text-sm font-bold tracking-wider opacity-90">084236 67868</span>
+                <div className="flex flex-col gap-2">
+                  <a href="tel:08423667868" className="text-sm font-bold tracking-wider opacity-90 block hover:text-brand-secondary transition-colors">084236 67868</a>
+                  <a href="tel:09936122163" className="text-sm font-bold tracking-wider opacity-90 block hover:text-brand-secondary transition-colors">099361 22163</a>
+                </div>
               </li>
-              <li className="flex items-center gap-4 justify-center md:justify-start">
+
+              <li className="flex items-center gap-4 justify-start">
                 <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-brand-secondary shrink-0 border border-white/10">
                   <Mail className="w-5 h-5" />
                 </div>
@@ -84,12 +88,12 @@ const Footer = () => {
           </div>
 
           {/* Emergency Support */}
-          <div className="text-center md:text-left">
-            <h3 className="text-white text-xl font-black mb-8 uppercase tracking-widest">Support</h3>
-            <div className="bg-gradient-to-br from-brand-primary to-[#042f2e] p-8 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group border border-white/10">
+          <div className="text-left">
+            <h3 className="text-white text-sm font-bold mb-8 uppercase tracking-widest">Support</h3>
+            <div className="bg-gradient-to-br from-brand-primary to-[#042f2e] p-5 rounded-[1rem] text-white shadow-2xl relative overflow-hidden group border border-white/10">
               <div className="relative z-10">
-                <p className="text-[10px] font-black tracking-[0.3em] mb-4 opacity-70 uppercase">24/7 Helpline</p>
-                <a href="tel:08423667868" className="text-2xl font-black block mb-6 hover:text-brand-secondary transition-colors tracking-tighter">
+                <p className="text-[10px] font-bold tracking-[0.3em] mb-4 opacity-70 uppercase">24/7 Helpline</p>
+                <a href="tel:08423667868" className="text-xl font-bold block mb-6 hover:text-brand-secondary transition-colors tracking-tighter">
                   084236 67868
                 </a>
                 <Link href="/contact" className="inline-flex items-center justify-center w-full gap-2 text-xs font-black uppercase tracking-widest bg-brand-secondary text-brand-primary border-b-4 border-amber-600 hover:translate-y-1 hover:border-b-0 py-4 rounded-2xl transition-all">
@@ -101,8 +105,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-xs font-bold tracking-widest uppercase">
-          <p className="opacity-50">© 2024 Jeevan Parivartan. Healing Paths.</p>
+        <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 text-xs font-bold tracking-widest">
+          <p className="opacity-50">© 2026 Jeevan Parivartan. Healing Paths.</p>
           <p className="flex items-center gap-2">
             Made with <Heart className="w-4 h-4 text-brand-secondary fill-brand-secondary" /> in Lucknow
           </p>

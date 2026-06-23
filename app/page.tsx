@@ -186,7 +186,7 @@ export default function Home() {
               className="w-full lg:w-1/2"
             >
               <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[5/4] border border-slate-100">
-                <Image src="/5.webp" alt="Center" fill className="object-cover" />
+                <Image src="/14.webp" alt="Center" fill className="object-cover" />
               </div>
             </motion.div>
 

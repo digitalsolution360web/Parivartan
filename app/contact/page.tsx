@@ -121,7 +121,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h4 className="text-brand-secondary font-bold text-[10px] uppercase tracking-widest mb-3">Our Campus Address</h4>
-                      <p className="text-lg font-bold leading-relaxed opacity-90">
+                      <p className="text-sm md:text-lg font-bold leading-relaxed opacity-90">
                         GGI Rd, Harikanshgadi, Mohanlalganj,<br /> Lucknow, UP 226301
                       </p>
                     </div>
@@ -132,15 +132,16 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h4 className="text-brand-secondary font-bold text-[10px] uppercase tracking-widest mb-3">24/7 Clinical Help</h4>
-                      <p className="text-2xl md:text-3xl font-bold tracking-tighter">084236 67868</p>
+                      <p className="text-sm md:text-2xl font-bold ">084236 67868</p>
+                      <p className="text-sm md:text-2xl font-bold ">099361 22163</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="h-[400px] bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm grayscale group hover:grayscale-0 transition-all duration-700">
+              <div className="h-[400px] bg-white rounded-3xl overflow-hidden">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3564.089408544078!2d80.957267!3d26.693665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDQxJzM3LjIiTiA4MMKwNTcnMjYuMiJF!5e0!3m2!1sen!2sin!4v171872659301!5m2!1sen!2sin"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3563.792897003013!2d80.9658125!3d26.7190625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfbcd9f3eacd1%3A0x119034aac2d6c346!2sJeevan%20parivartan%20Nasha%20Mukti%20kendra!5e0!3m2!1sen!2sin!4v1782185566142!5m2!1sen!2sin"
                   width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"
                 />
               </div>

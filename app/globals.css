@@ -107,6 +107,15 @@ body {
   animation: blob 7s infinite;
 }
 
+@keyframes soft-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-soft-bounce {
+  animation: soft-bounce 2s ease-in-out infinite;
+}
+
 @media (max-width: 768px) {
   .section-padding {
     padding-top: 5rem;
