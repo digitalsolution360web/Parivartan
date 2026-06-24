@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Phone, Mail, MapPin, Heart } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
 
 const Facebook = ({ className }: { className?: string }) => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
@@ -106,9 +106,18 @@ const Footer = () => {
         </div>
 
         <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 text-xs font-bold tracking-widest">
-          <p className="opacity-50">© 2026 Jeevan Parivartan. Healing Paths.</p>
-          <p className="flex items-center gap-2">
-            Made with <Heart className="w-4 h-4 text-brand-secondary fill-brand-secondary" /> in Lucknow
+          <p className="opacity-50">© 2026 Jeevan Parivartan.</p>
+          <p className="flex items-center gap-2 opacity-80">
+            DESIGNED &amp; DEVELOPED BY&nbsp;
+            <a
+              href="https://www.digitalsolution360.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-brand-secondary hover:text-white transition-colors font-black uppercase tracking-widest"
+            >
+              Digital Solution 360
+            </a>
+            <span className="w-2 h-2 bg-brand-secondary rounded-full inline-block animate-pulse ml-1" />
           </p>
         </div>
       </div>

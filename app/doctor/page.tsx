@@ -64,57 +64,78 @@ export default function DoctorPage() {
         </div>
       </section>
 
-      {/* Team Grid - Sliding In Left/Right */}
+      {/* Dr. Jyoti Pal - Director Profile */}
       <section className="section-padding bg-[#F8FAFC]">
         <div className="max-width-container">
-          <div className="grid grid-cols-1 gap-12 lg:gap-16">
-            {doctors.map((doc, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: doc.side === "left" ? -60 : 60 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className={`bg-white rounded-3xl overflow-hidden shadow-sm flex flex-col ${doc.side === "left" ? "lg:flex-row" : "lg:flex-row-reverse"} border border-slate-100 hover:shadow-xl transition-all group`}
-              >
-                <div className="lg:w-[40%] relative min-h-[400px] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
-                  <Image src={doc.img} alt={doc.name} fill className="object-cover" />
-                  <div className="absolute inset-0 bg-brand-primary/10 group-hover:bg-transparent transition-all" />
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="bg-white rounded-3xl overflow-hidden shadow-sm flex flex-col lg:flex-row border border-slate-100 hover:shadow-xl transition-all group"
+          >
+            <div className="lg:w-[42%] relative min-h-[500px] overflow-hidden">
+              <Image src="/10.webp" alt="Dr. Jyoti Pal" fill className="object-cover object-top group-hover:scale-105 transition-transform duration-700" />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-accent/60 to-transparent" />
+              <div className="absolute bottom-8 left-8 right-8">
+                <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4">
+                  <p className="text-brand-secondary font-bold text-[10px] uppercase tracking-[0.3em] mb-1">Director</p>
+                  <p className="text-white text-xl font-bold tracking-tight">Dr. Jyoti Pal</p>
                 </div>
-                <div className="lg:w-[60%] p-8 md:p-12 lg:p-16 flex flex-col justify-center">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="w-2 h-0.5 bg-brand-secondary" />
-                    <span className="text-brand-secondary font-bold text-[10px] uppercase tracking-widest leading-none">{doc.role}</span>
-                  </div>
-                  <h2 className="text-2xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight leading-none">{doc.name}</h2>
-                  
-                  <div className="flex flex-wrap gap-6 mb-8 border-y border-slate-50 py-6">
-                    <div className="flex items-center gap-3">
-                      <GraduationCap className="w-5 h-5 text-brand-primary" />
-                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">{doc.qualification}</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Clock className="w-5 h-5 text-brand-primary" />
-                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">{doc.experience} Experience</span>
-                    </div>
-                  </div>
+              </div>
+            </div>
+            <div className="lg:w-[58%] p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="w-2 h-0.5 bg-brand-secondary" />
+                <span className="text-brand-secondary font-bold text-[10px] uppercase tracking-widest">Founder & Director</span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight leading-none">Dr. Jyoti Pal</h2>
 
-                  <p className="text-slate-800 text-base leading-relaxed mb-10 font-bold">
-                    {doc.bio}
-                  </p>
-                  
-                  <div className="flex items-center gap-6">
-                    <a href="#" className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-brand-primary hover:text-white transition-all">
-                      <Linkedin className="w-5 h-5" />
-                    </a>
-                    <a href="#" className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-brand-primary hover:text-white transition-all">
-                      <Mail className="w-5 h-5" />
-                    </a>
-                  </div>
+              <div className="flex flex-wrap gap-6 mb-8 border-y border-slate-100 py-6">
+                <div className="flex items-center gap-3">
+                  <GraduationCap className="w-5 h-5 text-brand-primary" />
+                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">M.Sc. in Psychology & Rehabilitation</span>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+                <div className="flex items-center gap-3">
+                  <Clock className="w-5 h-5 text-brand-primary" />
+                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">10+ Years Experience</span>
+                </div>
+              </div>
+
+              <div className="space-y-5 mb-10">
+                <p className="text-slate-700 text-base leading-relaxed font-medium italic border-l-4 border-brand-secondary pl-5">
+                  "Our mission is not just treatment, but true transformation. We believe in restoring the dignity and health of every individual who walks through our doors."
+                </p>
+                <p className="text-slate-700 text-base leading-relaxed">
+                  Dr. Jyoti Pal is the visionary founder and Director of Jeevan Parivartan Nasha Mukti Kendra. With over a decade of dedicated service in the field of mental health and addiction recovery, she has transformed hundreds of lives through compassionate, evidence-based care. Her leadership is rooted in the belief that every individual deserves a second chance at a dignified, sober life.
+                </p>
+                <p className="text-slate-700 text-base leading-relaxed">
+                  Under Dr. Pal's guidance, Jeevan Parivartan has grown into one of the most trusted de-addiction centers in Uttar Pradesh, offering a holistic blend of medical detoxification, psychiatric support, individual therapy, and long-term aftercare programs. She personally oversees all clinical protocols to ensure the highest standards of care and patient safety.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-3 gap-6 mb-10 p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                <div className="text-center">
+                  <p className="text-2xl font-bold text-brand-primary mb-1">10+</p>
+                  <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Years of Service</p>
+                </div>
+                <div className="text-center border-x border-slate-200">
+                  <p className="text-2xl font-bold text-brand-primary mb-1">1000+</p>
+                  <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Lives Transformed</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-2xl font-bold text-brand-primary mb-1">95%</p>
+                  <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Success Rate</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <a href="tel:08423667868" className="inline-flex items-center gap-2 bg-brand-primary text-white px-8 py-4 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-brand-secondary transition-all shadow-lg">
+                  <Phone className="w-4 h-4" /> Consult Now
+                </a>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 

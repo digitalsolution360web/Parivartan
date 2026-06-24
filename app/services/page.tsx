@@ -25,32 +25,32 @@ const services = [
   {
     title: "1. Assessment & Diagnosis",
     icon: <ClipboardCheck className="w-6 h-6" />,
-    items: ["Comprehensive addiction profiling", "Psychiatric evaluation", "Physical health screening", "Personalized treatment maps"]
+    items: ["Comprehensive addiction profiling", "Psychiatric evaluation", "Physical health screening", "Personalized treatment maps"],
   },
   {
     title: "2. Clinical Detoxification",
     icon: <Stethoscope className="w-6 h-6" />,
-    items: ["Medically supervised protocols", "Withdrawal management", "24/7 clinical monitoring", "Biological stabilization"]
+    items: ["Medically supervised protocols", "Withdrawal management", "24/7 clinical monitoring", "Biological stabilization"],
   },
   {
     title: "3. Intensive Counseling",
     icon: <MessagesSquare className="w-6 h-6" />,
-    items: ["Individual depth therapy", "Cognitive Behavioral Therapy", "Relapse prevention training", "Trauma-informed support"]
+    items: ["Individual depth therapy", "Cognitive Behavioral Therapy", "Relapse prevention training", "Trauma-informed support"],
   },
   {
     title: "4. Psychiatric Support",
     icon: <UserPlus className="w-6 h-6" />,
-    items: ["Medication management", "Dual-diagnosis treatment", "Mental health restoration", "Emotional equilibrium care"]
+    items: ["Medication management", "Dual-diagnosis treatment", "Mental health restoration", "Emotional equilibrium care"],
   },
   {
     title: "5. Residential Rehab",
     icon: <HomeIcon className="w-6 h-6" />,
-    items: ["Safe sanctuary living", "Structured discipline", "Therapeutic community", "Life skills rebuilding"]
+    items: ["Safe sanctuary living", "Structured discipline", "Therapeutic community", "Life skills rebuilding"],
   },
   {
     title: "6. Family Restoration",
     icon: <Users className="w-6 h-6" />,
-    items: ["Relationship restoration", "Family education days", "Caregiver support", "Healing the home unit"]
+    items: ["Relationship restoration", "Family education days", "Caregiver support", "Healing the home unit"],
   },
 ];
 
@@ -95,11 +95,11 @@ export default function ServicesPage() {
                 <div className="w-12 h-12 bg-brand-primary/5 text-brand-primary rounded-xl flex items-center justify-center mb-6 transition-colors group-hover:bg-brand-primary group-hover:text-white">
                   {service.icon}
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-6 tracking-tight">{service.title}</h3>
-                <ul className="space-y-3">
+                <h3 className="text-xl font-bold text-slate-900 mb-7 tracking-tight border-b border-slate-100 pb-4">{service.title}</h3>
+                <ul className="space-y-4">
                   {service.items.map((item, i) => (
-                    <li key={i} className="flex items-start gap-3 text-slate-800 text-[11px] font-bold tracking-wide">
-                      <div className="w-1.5 h-1.5 bg-brand-secondary rounded-full mt-1.5 shrink-0" />
+                    <li key={i} className="flex items-start gap-3 text-slate-700 text-sm font-semibold leading-relaxed">
+                      <div className="w-2 h-2 bg-brand-secondary rounded-full mt-1.5 shrink-0" />
                       {item}
                     </li>
                   ))}

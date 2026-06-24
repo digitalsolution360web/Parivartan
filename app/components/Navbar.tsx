@@ -36,7 +36,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-500 ${isScrolledState ? "bg-brand-accent/90 backdrop-blur-xl py-3 border-b border-white/5" : "bg-transparent py-5"
+      className={`fixed w-full z-50 transition-all duration-500 bg-brand-accent/90 backdrop-blur-xl border-b border-white/5 ${isScrolledState ? "py-3" : "py-5"
         }`}
     >
       <div className="max-width-container">

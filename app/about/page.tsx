@@ -173,18 +173,27 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight">Our Decade of Impact</h2>
           </div>
 
-          <div className="space-y-32">
+          <div className="space-y-20">
             {[
-              // { title: "Director", desc: "Dr Jyoti Pal ", image: "/10.webp", side: "left", step: "01", bg: "bg-emerald-50/50", border: "border-emerald-100" },
-              { title: "Clinical Expansion", desc: "Modernized our medical facilities and integrated advanced psychiatric therapies.", image: "/11.webp", side: "right", step: "1", bg: "bg-amber-50/50", border: "border-amber-100" },
-              { title: "State-of-the-Art Campus", desc: "Launched our new bio-centric residential recovery center with premium facilities.", image: "/12.webp", side: "left", step: "02", bg: "bg-indigo-50/50", border: "border-indigo-100" }
+              {
+                title: "Clinical Expansion & Advanced Medical Care",
+                desc: "Over the years, Jeevan Parivartan has continuously modernized its medical infrastructure to stay at the forefront of addiction medicine. We integrated advanced psychiatric therapies, brought in specialized neurological assessment tools, and expanded our team of expert clinicians. Our evidence-based treatment protocols now encompass dual-diagnosis care, trauma-informed therapy, and next-generation relapse prevention — ensuring every patient receives the most comprehensive care possible.",
+                highlights: ["Advanced Psychiatric Unit", "Dual-Diagnosis Treatment", "Expert Clinical Team", "Evidence-Based Protocols"],
+                image: "/11.webp", side: "right", step: "01", bg: "bg-amber-50/50", border: "border-amber-100"
+              },
+              {
+                title: "State-of-the-Art Bio-Centric Campus",
+                desc: "We launched our flagship residential recovery campus — a bio-centric sanctuary designed to heal body, mind, and spirit. The campus features premium residential suites, meditation gardens, therapeutic recreation zones, a fully equipped clinical wing, and state-of-the-art counseling rooms. Every design element was intentionally crafted to create a calm, healing atmosphere that supports the recovery journey from day one to long-term aftercare.",
+                highlights: ["Premium Residential Suites", "Meditation & Yoga Zone", "Therapeutic Recreation", "24/7 Clinical Monitoring"],
+                image: "/12.webp", side: "left", step: "02", bg: "bg-indigo-50/50", border: "border-indigo-100"
+              }
             ].map((step, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className={`flex flex-col ${step.side === "left" ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-10 md:gap-20 p-8 md:p-12 rounded-[3rem] ${step.bg} border ${step.border} relative overflow-hidden`}
+                className={`flex flex-col ${step.side === "left" ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-10 md:gap-20 p-8 md:p-14 rounded-[3rem] ${step.bg} border ${step.border} relative overflow-hidden`}
               >
                 <motion.div
                   initial={{ opacity: 0, x: step.side === "left" ? -60 : 60 }}
@@ -193,7 +202,7 @@ export default function AboutPage() {
                   viewport={{ once: true }}
                   className="w-full md:w-1/2"
                 >
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-white">
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border-2 border-white">
                     <Image src={step.image} alt={step.title} fill className="object-cover" />
                   </div>
                 </motion.div>
@@ -202,13 +211,21 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8 }}
                   viewport={{ once: true }}
-                  className="w-full md:w-1/2"
+                  className="w-full md:w-1/2 space-y-6"
                 >
-                  <span className="text-4xl md:text-6xl font-bold text-slate-300 mb-4 block leading-none">{step.step}</span>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">{step.title}</h3>
-                  <p className="text-slate-800 text-base font-bold leading-relaxed">{step.desc}</p>
+                  <span className="text-5xl md:text-7xl font-bold text-slate-200 block leading-none">{step.step}</span>
+                  <h3 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight leading-tight">{step.title}</h3>
+                  <p className="text-slate-700 text-base leading-relaxed">{step.desc}</p>
+                  <div className="grid grid-cols-2 gap-3 pt-2">
+                    {step.highlights.map((h, hi) => (
+                      <div key={hi} className="flex items-center gap-2 text-slate-700">
+                        <div className="w-2 h-2 rounded-full bg-brand-secondary shrink-0" />
+                        <span className="text-xs font-bold tracking-wide">{h}</span>
+                      </div>
+                    ))}
+                  </div>
                 </motion.div>
-                <div className="absolute top-0 right-0 w-40 h-40 bg-white/50 rounded-full blur-3xl -mr-20 -mt-20" />
+                <div className="absolute top-0 right-0 w-40 h-40 bg-white/60 rounded-full blur-3xl -mr-20 -mt-20" />
               </motion.div>
             ))}
           </div>

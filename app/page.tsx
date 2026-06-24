@@ -52,10 +52,10 @@ const Counter = ({ value, suffix = "" }: { value: string; suffix?: string }) => 
 };
 
 const slides = [
-  { img: "/1.webp", title: "Holistic Healing for Mind & Body", subtitle: "Comprehensive addiction treatment and mental health support tailored for lasting recovery." },
+  { img: "/21.jpeg", title: "Holistic Healing for Mind & Body", subtitle: "Comprehensive addiction treatment and mental health support tailored for lasting recovery." },
   { img: "/2.webp", title: "A Supportive Sanctuary", subtitle: "24/7 professional guidance in a safe, structured, and compassionate environment." },
   { img: "/3.webp", title: "Restore Your Inner Peace", subtitle: "Specialized therapy programs designed for long-term sobriety and mental wellness." },
-  { img: "/4.webp", title: "Empowering Your Future", subtitle: "Wellness programs and holistic recovery protocols for a balanced, drug-free life." },
+  { img: "/22.jpeg", title: "Empowering Your Future", subtitle: "Wellness programs and holistic recovery protocols for a balanced, drug-free life." },
 ];
 
 export default function Home() {
@@ -297,10 +297,10 @@ export default function Home() {
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: "Assessment", icon: <Stethoscope />, desc: "Clinical health and psychological vetting." },
-              { title: "Managed Detox", icon: <Sparkles />, desc: "Medical oversight during stabilization." },
-              { title: "Active Therapy", icon: <Users />, desc: "Rebuilding resilience via counseling." },
-              { title: "Permanent Support", icon: <Sun />, desc: "Ensuring long-term sobriety success." },
+              { title: "Assessment", icon: <Stethoscope />, desc: "Comprehensive clinical health screening and psychological vetting to design your personalized recovery plan." },
+              { title: "Managed Detox", icon: <Sparkles />, desc: "24/7 medically supervised detoxification with expert oversight to ensure safe and comfortable stabilization." },
+              { title: "Active Therapy", icon: <Users />, desc: "Intensive individual and group counseling sessions focused on rebuilding resilience and mental strength." },
+              { title: "Permanent Support", icon: <Sun />, desc: "Ongoing aftercare and relapse prevention programs ensuring long-term sobriety and sustainable success." },
             ].map((p, i) => (
               <motion.div
                 key={i}
@@ -308,13 +308,13 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white border border-slate-200 p-8 rounded-2xl shadow-sm hover:shadow-md transition-all group"
+                className="bg-brand-accent p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all group hover:-translate-y-1"
               >
-                <div className="w-12 h-12 rounded-xl bg-brand-primary/5 flex items-center justify-center text-brand-primary mb-6 group-hover:bg-brand-primary group-hover:text-white transition-colors">
+                <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-brand-secondary mb-6 group-hover:bg-brand-secondary group-hover:text-brand-primary transition-colors border border-white/10">
                   {p.icon}
                 </div>
-                <h3 className="text-base font-bold text-slate-900 mb-3 tracking-tight">{p.title}</h3>
-                <p className="text-slate-700 text-[11px] font-bold leading-relaxed">{p.desc}</p>
+                <h3 className="text-base font-bold text-white mb-3 tracking-tight">{p.title}</h3>
+                <p className="text-slate-300 text-[12px] leading-relaxed">{p.desc}</p>
               </motion.div>
             ))}
           </div>
