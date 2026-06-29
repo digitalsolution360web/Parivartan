@@ -62,7 +62,7 @@ export default function AboutPage() {
     <div className="bg-white overflow-x-hidden">
       {/* Hero Banner - Slide Down */}
       <section className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden">
-        <Image src="/1.webp" alt="About Us" fill className="object-cover" priority />
+        <Image src="/29.webp" alt="About Us" fill className="object-cover" priority />
         <div className="absolute inset-0 bg-brand-accent/70 backdrop-blur-[2px]" />
 
         <div className="relative z-10 max-width-container text-center">
@@ -179,7 +179,7 @@ export default function AboutPage() {
                 title: "Clinical Expansion & Advanced Medical Care",
                 desc: "Over the years, Jeevan Parivartan has continuously modernized its medical infrastructure to stay at the forefront of addiction medicine. We integrated advanced psychiatric therapies, brought in specialized neurological assessment tools, and expanded our team of expert clinicians. Our evidence-based treatment protocols now encompass dual-diagnosis care, trauma-informed therapy, and next-generation relapse prevention — ensuring every patient receives the most comprehensive care possible.",
                 highlights: ["Advanced Psychiatric Unit", "Dual-Diagnosis Treatment", "Expert Clinical Team", "Evidence-Based Protocols"],
-                image: "/11.webp", side: "right", step: "01", bg: "bg-amber-50/50", border: "border-amber-100"
+                image: "/26.webp", side: "right", step: "01", bg: "bg-amber-50/50", border: "border-amber-100"
               },
               {
                 title: "State-of-the-Art Bio-Centric Campus",
@@ -276,7 +276,7 @@ export default function AboutPage() {
                 <Image src="/8.webp" alt="Facility" fill className="object-cover" />
               </div>
               <div className="relative rounded-2xl overflow-hidden h-72 border border-slate-100">
-                <Image src="/9.webp" alt="Counseling" fill className="object-cover" />
+                <Image src="/24.webp" alt="Counseling" fill className="object-cover" />
               </div>
             </motion.div>
 

@@ -44,7 +44,7 @@ export default function DoctorPage() {
     <div className="bg-white overflow-x-hidden">
       {/* Header Banner - Slide Down */}
       <section className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden">
-        <Image src="/4.webp" alt="Medical Team" fill className="object-cover" priority />
+        <Image src="/30.webp" alt="Medical Team" fill className="object-cover" priority />
         <div className="absolute inset-0 bg-brand-accent/70 backdrop-blur-[2px]" />
 
         <div className="relative z-10 max-width-container text-center">
@@ -142,7 +142,7 @@ export default function DoctorPage() {
       {/* Philosophy - Soft Amber Background */}
       <section className="section-padding bg-[#FFFBF0] border-y border-amber-100">
         <div className="max-width-container">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -155,9 +155,9 @@ export default function DoctorPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { title: "Neuro-Tailored Care", desc: "Our doctors design treatments based on the latest neurological addiction research.", icon: <Award className="w-6 h-6"/> },
-              { title: "Patient-Centricity", desc: "Every clinical decision is made with the patient's individual dignity and history in mind.", icon: <Target className="w-6 h-6"/> },
-              { title: "Constant Vigilance", desc: "Medical monitoring is active 24/7 during the critical neural stabilization phases.", icon: <ShieldCheck className="w-6 h-6"/> },
+              { title: "Neuro-Tailored Care", desc: "Our doctors design treatments based on the latest neurological addiction research.", icon: <Award className="w-6 h-6" /> },
+              { title: "Patient-Centricity", desc: "Every clinical decision is made with the patient's individual dignity and history in mind.", icon: <Target className="w-6 h-6" /> },
+              { title: "Constant Vigilance", desc: "Medical monitoring is active 24/7 during the critical neural stabilization phases.", icon: <ShieldCheck className="w-6 h-6" /> },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -180,7 +180,7 @@ export default function DoctorPage() {
       {/* CTA - Closing Section */}
       <section className="section-padding bg-white overflow-hidden relative">
         <div className="max-width-container">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

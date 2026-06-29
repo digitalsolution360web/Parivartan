@@ -20,7 +20,7 @@ export default function ContactPage() {
     <div className="bg-white min-h-screen overflow-x-hidden">
       {/* Hero Banner - Slide Down */}
       <section className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden">
-        <Image src="/contact_hero.webp" alt="Contact Us" fill className="object-cover" priority />
+        <Image src="/28.webp" alt="Contact Us" fill className="object-cover" priority />
         <div className="absolute inset-0 bg-brand-accent/90 backdrop-blur-[2px]" />
 
         <div className="relative z-10 max-width-container text-center">
