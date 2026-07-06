@@ -52,9 +52,9 @@ const Counter = ({ value, suffix = "" }: { value: string; suffix?: string }) => 
 };
 
 const slides = [
-  { img: "/23.webp", title: "Holistic Healing for Mind & Body", subtitle: "Comprehensive addiction treatment and mental health support tailored for lasting recovery." },
-  { img: "/2.webp", title: "A Supportive Sanctuary", subtitle: "24/7 professional guidance in a safe, structured, and compassionate environment." },
-  { img: "/3.webp", title: "Restore Your Inner Peace", subtitle: "Specialized therapy programs designed for long-term sobriety and mental wellness." },
+  { img: "/slider1.webp", title: "Holistic Healing for Mind & Body", subtitle: "Comprehensive addiction treatment and mental health support tailored for lasting recovery." },
+  { img: "/slider2.webp", title: "A Supportive Sanctuary", subtitle: "24/7 professional guidance in a safe, structured, and compassionate environment." },
+  { img: "/slider3.webp", title: "Restore Your Inner Peace", subtitle: "Specialized therapy programs designed for long-term sobriety and mental wellness." },
   { img: "/27.webp", title: "Empowering Your Future", subtitle: "Wellness programs and holistic recovery protocols for a balanced, drug-free life." },
 ];
 
@@ -186,7 +186,7 @@ export default function Home() {
               className="w-full lg:w-1/2"
             >
               <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[5/4] border border-slate-100">
-                <Image src="/14.webp" alt="Center" fill className="object-cover" />
+                <Image src="/image1.webp" alt="Center" fill className="object-cover" />
               </div>
             </motion.div>
 
