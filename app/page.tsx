@@ -55,7 +55,7 @@ const slides = [
   { img: "/slider1.webp", title: "Holistic Healing for Mind & Body", subtitle: "Comprehensive addiction treatment and mental health support tailored for lasting recovery." },
   { img: "/slider2.webp", title: "A Supportive Sanctuary", subtitle: "24/7 professional guidance in a safe, structured, and compassionate environment." },
   { img: "/slider3.webp", title: "Restore Your Inner Peace", subtitle: "Specialized therapy programs designed for long-term sobriety and mental wellness." },
-  { img: "/27.webp", title: "Empowering Your Future", subtitle: "Wellness programs and holistic recovery protocols for a balanced, drug-free life." },
+  // { img: "/27.webp", title: "Empowering Your Future", subtitle: "Wellness programs and holistic recovery protocols for a balanced, drug-free life." },
 ];
 
 export default function Home() {
@@ -71,7 +71,7 @@ export default function Home() {
   return (
     <div className="bg-white overflow-x-hidden">
       {/* Hero Slider - Entry Animation */}
-      <section className="relative h-[85vh] w-full overflow-hidden">
+      <section className="relative w-full bg-black" style={{ minHeight: "320px" }}>
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -79,20 +79,21 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1.2 }}
-            className="absolute inset-0"
+            className="w-full"
           >
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={slides[currentSlide].img}
               alt="Center Hero"
-              fill
-              className="object-cover object-center"
-              priority
+              className="w-full h-auto block"
+              style={{ maxHeight: "90vh", width: "100%", objectFit: "contain" }}
             />
-            <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-black/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-black/30 to-transparent pointer-events-none" />
           </motion.div>
         </AnimatePresence>
 
-        <div className="relative z-10 h-full flex items-center">
+        {/* Text overlay - absolutely positioned on top */}
+        <div className="absolute inset-0 z-10 flex items-center">
           <div className="max-width-container w-full">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -185,7 +186,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="w-full lg:w-1/2"
             >
-              <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[5/4] border border-slate-100">
+              <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[5/4.9] border border-slate-100">
                 <Image src="/image1.webp" alt="Center" fill className="object-cover" />
               </div>
             </motion.div>
