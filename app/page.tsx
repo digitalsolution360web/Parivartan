@@ -71,7 +71,10 @@ export default function Home() {
   return (
     <div className="bg-white overflow-x-hidden">
       {/* Hero Slider - Entry Animation */}
-      <section className="relative w-full bg-black" style={{ minHeight: "320px" }}>
+      <section
+        className="relative w-full bg-black overflow-hidden"
+        style={{ height: "clamp(200px, 110vw, 82vh)" }}
+      >
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -79,51 +82,56 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1.2 }}
-            className="w-full"
+            style={{ position: "absolute", inset: 0 }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={slides[currentSlide].img}
               alt="Center Hero"
-              className="w-full h-auto block"
-              style={{ maxHeight: "90vh", width: "100%", objectFit: "contain" }}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center center",
+                display: "block",
+              }}
             />
-            <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-black/30 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-black/70 via-black/20 to-transparent pointer-events-none" />
           </motion.div>
         </AnimatePresence>
 
         {/* Text overlay - absolutely positioned on top */}
-        <div className="absolute inset-0 z-10 flex items-center">
-          <div className="max-width-container w-full">
+        <div className="absolute inset-0 z-10 flex items-center pt-20 sm:pt-24 md:pt-0">
+          <div className="max-width-container w-full px-4">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="max-w-3xl"
             >
-              <p className="text-brand-secondary font-bold text-[10px] tracking-[0.4rem] uppercase mb-4 leading-none">
+              <p className="text-brand-secondary font-bold text-[9px] sm:text-[10px] tracking-[0.15rem] sm:tracking-[0.4rem] uppercase mb-2 sm:mb-3 leading-normal">
                 #1 Trusted Recovery Center
               </p>
-              <h1 className="text-2xl md:text-4xl lg:text-4xl font-bold text-white mb-6 leading-tight tracking-tight">
+              <h1 className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 leading-tight tracking-tight">
                 {slides[currentSlide].title}
               </h1>
-              <p className="text-white text-base md:text-lg mb-10 leading-relaxed max-w-xl">
+              <p className="text-white text-sm md:text-lg mb-6 leading-relaxed max-w-xl hidden sm:block">
                 {slides[currentSlide].subtitle}
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-2.5 sm:gap-3">
                 <Link
                   href="/contact"
-                  className="bg-brand-secondary text-brand-primary px-8 py-4 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-white transition-all shadow-xl"
+                  className="bg-brand-secondary text-brand-primary px-4 py-2.5 sm:px-8 sm:py-4 rounded-xl font-bold text-[9px] sm:text-[10px] uppercase tracking-widest hover:bg-white transition-all shadow-xl"
                 >
                   Start Healing Now
                 </Link>
-                <div className="flex items-center gap-4 px-2">
-                  <div className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white">
-                    <Phone className="w-4 h-4" />
+                <div className="flex items-center gap-2 sm:gap-3 px-1 sm:px-2">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-white/30 flex items-center justify-center text-white shrink-0">
+                    <Phone className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <p className="text-[9px] font-bold text-slate-300 uppercase tracking-widest leading-none mb-1">Direct Help</p>
-                    <p className="text-base font-bold text-white tracking-tight">084236 67868</p>
+                    <p className="text-[8px] sm:text-[9px] font-bold text-slate-300 uppercase tracking-widest leading-normal mb-0.5">Direct Help</p>
+                    <p className="text-xs sm:text-base font-bold text-white tracking-tight leading-none">084236 67868</p>
                   </div>
                 </div>
               </div>
@@ -132,7 +140,7 @@ export default function Home() {
         </div>
 
         {/* Dots */}
-        <div className="absolute bottom-8 right-8 z-20 flex gap-3">
+        <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 z-20 flex gap-3">
           {slides.map((_, idx) => (
             <button
               key={idx}
@@ -362,13 +370,23 @@ export default function Home() {
               viewport={{ once: true }}
               className="w-full lg:w-2/5"
             >
-              <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-100 h-full min-h-[500px]">
-                <Image
-                  src="/16.webp"
-                  alt="Center Rules and Guidelines"
-                  fill
-                  className="object-cover"
-                />
+              <div className="relative w-full h-full lg:rounded-[2rem] lg:overflow-hidden lg:shadow-2xl lg:border lg:border-slate-100 lg:min-h-[500px] flex items-center justify-center">
+                <div className="hidden lg:bloc absolute inset-0">
+                  <Image
+                    src="/16.webp"
+                    alt="Center Rules and Guidelines"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="block lg:hidden w-full">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/16.webp"
+                    alt="Center Rules and Guidelines"
+                    className="w-full h-auto rounded-2xl rounded-2xl shadow-md border border-slate-100"
+                  />
+                </div>
               </div>
             </motion.div>
           </div>
