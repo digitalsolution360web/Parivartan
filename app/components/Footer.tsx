@@ -93,7 +93,7 @@ const Footer = () => {
             <div className="bg-gradient-to-br from-brand-primary to-[#042f2e] p-5 rounded-[1rem] text-white shadow-2xl relative overflow-hidden group border border-white/10">
               <div className="relative z-10">
                 <p className="text-[10px] font-bold tracking-[0.3em] mb-4 opacity-70 uppercase">24/7 Helpline</p>
-                <a href="tel:08423667868" className="text-xl font-bold block mb-6 hover:text-brand-secondary transition-colors tracking-tighter">
+                <a href="tel:08423667868" className="text-xl font-bold block mb-6 hover:text-brand-secondary transition-colors tracking-tighter whitespace-nowrap">
                   084236 67868
                 </a>
                 <Link href="/contact" className="inline-flex items-center justify-center w-full gap-2 text-xs font-black uppercase tracking-widest bg-brand-secondary text-brand-primary border-b-4 border-amber-600 hover:translate-y-1 hover:border-b-0 py-4 rounded-2xl transition-all">
@@ -108,12 +108,12 @@ const Footer = () => {
         <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 text-xs font-bold tracking-widest">
           <p className="opacity-50">© 2026 Jeevan Parivartan.</p>
           <p className="flex items-center gap-2 opacity-80">
-            DESIGNED &amp; DEVELOPED BY&nbsp;
+            Designed &amp; Developed By&nbsp;
             <a
               href="https://www.digitalsolution360.in/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-brand-secondary hover:text-white transition-colors font-black uppercase tracking-widest"
+              className="text-brand-secondary hover:text-white transition-colors font-bold tracking-widest"
             >
               Digital Solution 360
             </a>

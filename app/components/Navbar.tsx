@@ -36,21 +36,20 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-500 bg-brand-accent/90 backdrop-blur-xl border-b border-white/5 ${isScrolledState ? "py-3" : "py-5"
+      className={`fixed w-full z-50 transition-all duration-500 bg-brand-accent/90 backdrop-blur-xl border-b border-white/5 ${isScrolledState ? "py-2 md:py-3" : "py-3 md:py-5"
         }`}
     >
       <div className="max-width-container">
         <div className="flex justify-between items-center">
-          <Link href="/" className="flex flex-col group gap-0.5">
-            <span className={`text-xl md:text-2xl font-bold tracking-tighter transition-colors duration-500 ${isScrolledState ? "text-white" : "text-white"}`}>
+          <Link href="/" className="flex flex-col group gap-0">
+            <span className={`text-[17px] sm:text-xl md:text-2xl font-bold tracking-tighter transition-colors duration-500 ${isScrolledState ? "text-white" : "text-white"}`}>
               Jeevan <span className="text-brand-secondary font-light">Parivartan</span>
             </span>
             <div className={`h-0.5 w-0 group-hover:w-full transition-all duration-500 ${isScrolledState ? "bg-brand-secondary" : "bg-brand-secondary"}`} />
-            <span className={`text-[9px] md:text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-500 ${isScrolledState ? "text-slate-400" : "text-white/80"}`}>
+            <span className={`text-[8px] sm:text-[9px] md:text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-500 ${isScrolledState ? "text-slate-400" : "text-white/80"}`}>
               Nasha Mukti Kendra
             </span>
           </Link>
-
           {/* Desktop Links */}
           <div className="hidden lg:flex items-center space-x-10">
             {navLinks.map((link) => (
@@ -77,9 +76,9 @@ const Navbar = () => {
           <div className="lg:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`p-3 rounded-xl border transition-all ${isScrolledState ? "text-white border-white/10" : "text-white border-white/20"}`}
+              className={`p-2 rounded-xl border transition-all ${isScrolledState ? "text-white border-white/10" : "text-white border-white/20"}`}
             >
-              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isOpen ? <X className="w-4.5 h-4.5" /> : <Menu className="w-4.5 h-4.5" />}
             </button>
           </div>
         </div>
@@ -92,7 +91,7 @@ const Navbar = () => {
             initial={{ opacity: 0, scale: 0.95, y: -20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
-            className="lg:hidden fixed inset-x-4 top-20 z-[60] bg-brand-accent/95 backdrop-blur-3xl rounded-3xl shadow-3xl border border-white/10 overflow-hidden"
+            className="lg:hidden fixed inset-x-4 top-16 sm:top-20 z-[60] bg-brand-accent/95 backdrop-blur-3xl rounded-3xl shadow-3xl border border-white/10 overflow-hidden"
           >
             <div className="p-8 space-y-2">
               {navLinks.map((link) => (

@@ -34,7 +34,7 @@ export default function GalleryPage() {
   return (
     <div className="bg-white min-h-screen overflow-x-hidden">
       {/* Hero - Slide Down */}
-      <section className="relative h-[45vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[25vh] md:h-[45vh] min-h-[240px] md:min-h-[400px] flex items-center justify-center overflow-hidden">
         <Image src="/gallery_hero.webp" alt="Gallery" fill className="object-cover" priority />
         <div className="absolute inset-0 bg-brand-accent/90 backdrop-blur-[2px]" />
 

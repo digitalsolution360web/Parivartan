@@ -73,7 +73,7 @@ export default function Home() {
       {/* Hero Slider - Entry Animation */}
       <section
         className="relative w-full bg-black overflow-hidden"
-        style={{ height: "clamp(200px, 110vw, 82vh)" }}
+        style={{ height: "clamp(200px, 80vw, 82vh)" }}
       >
         <AnimatePresence mode="wait">
           <motion.div
@@ -152,7 +152,7 @@ export default function Home() {
       </section>
 
       {/* Stats Bar - Animated Counter & Different Subtle Background */}
-      <section className="py-12 bg-[#F0FDF4]/50 border-y border-emerald-100">
+      <section className="py-8 md:py-12 bg-[#F0FDF4]/50 border-y border-emerald-100">
         <div className="max-width-container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
@@ -233,9 +233,9 @@ export default function Home() {
       </section>
 
       {/* Director Highlight - Home Page */}
-      <section className="py-20 bg-slate-50 relative overflow-hidden">
+      <section className="py-10 md:py-20 bg-slate-50 relative overflow-hidden">
         <div className="max-width-container">
-          <div className="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20">
+          <div className="flex flex-col lg:flex-row-reverse items-center gap-8 lg:gap-20">
             <motion.div
               initial={{ opacity: 0, x: 60 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -266,11 +266,11 @@ export default function Home() {
                 <div className="w-10 h-0.5 bg-brand-secondary" />
                 <span className="text-brand-secondary font-bold text-[10px] uppercase tracking-[0.4em]">Director's Message</span>
               </div>
-              <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-8 tracking-tight leading-tight">
+              <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4 md:mb-8 tracking-tight leading-tight">
                 Led by Empathy, <br />
                 <span className="text-brand-primary">Driven by Results.</span>
               </h2>
-              <div className="relative mb-10">
+              <div className="relative mb-6 md:mb-10">
                 <span className="absolute -top-6 -left-4 text-8xl text-brand-primary/10 font-serif leading-none">"</span>
                 <p className="text-lg md:text-xl text-slate-700 font-medium leading-relaxed relative z-10 italic">
                   At Jeevan Parivartan, we don't just treat addiction; we rediscover the human spirit. Our dedicated team is committed to providing the highest quality care to help you reclaim your life and future.
@@ -280,7 +280,7 @@ export default function Home() {
                 <p className="text-xl font-bold text-slate-900 mb-1">Dr. Jyoti Pal</p>
                 <p className="text-brand-primary font-bold text-[10px] uppercase tracking-[0.3em]">Director - Jeevan Parivartan</p>
               </div>
-              <div className="mt-10">
+              <div className="mt-6 md:mt-10">
                 <Link href="/about" className="inline-flex items-center gap-3 bg-brand-primary text-white px-8 py-4 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-brand-secondary transition-all shadow-lg">
                   Learn About Our Vision <ArrowRight className="w-4 h-4" />
                 </Link>
@@ -371,7 +371,7 @@ export default function Home() {
               className="w-full lg:w-2/5"
             >
               <div className="relative w-full h-full lg:rounded-[2rem] lg:overflow-hidden lg:shadow-2xl lg:border lg:border-slate-100 lg:min-h-[500px] flex items-center justify-center">
-                <div className="hidden lg:bloc absolute inset-0">
+                <div className="hidden lg:block absolute inset-0">
                   <Image
                     src="/16.webp"
                     alt="Center Rules and Guidelines"
@@ -396,24 +396,24 @@ export default function Home() {
 
 
       {/* Emergency CTA - Soft Professional Light Theme */}
-      <section className="py-16 bg-emerald-50/50 border-y border-emerald-100">
+      <section className="py-10 md:py-16 bg-emerald-50/50 border-y border-emerald-100">
         <div className="max-width-container">
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-white border border-emerald-100 rounded-3xl p-10 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left shadow-xl relative overflow-hidden"
+            className="bg-white border border-emerald-100 rounded-3xl p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8 text-center md:text-left shadow-xl relative overflow-hidden"
           >
-            <div className="flex items-center gap-6 relative z-10 text-left">
-              <div className="w-14 h-14 bg-brand-primary rounded-2xl flex items-center justify-center text-brand-secondary shadow-lg">
-                <PhoneCall className="w-6 h-6" />
+            <div className="flex flex-row items-center gap-4 sm:gap-6 relative z-10 text-left w-full md:w-auto justify-center md:justify-start">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-brand-primary rounded-2xl flex items-center justify-center text-brand-secondary shadow-lg shrink-0">
+                <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
-              <div>
-                <p className="text-[10px] font-bold text-brand-primary uppercase tracking-[0.2em] mb-1">Emergency Support 24/7</p>
-                <p className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter tabular-nums">084236 67868</p>
+              <div className="min-w-0">
+                <p className="text-[9px] sm:text-[10px] font-bold text-brand-primary uppercase tracking-[0.2em] mb-1">Emergency Support 24/7</p>
+                <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter tabular-nums whitespace-nowrap">084236 67868</p>
               </div>
             </div>
-            <Link href="/contact" className="bg-brand-primary text-white px-10 py-4 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-brand-secondary transition-all relative z-10 shadow-lg">
+            <Link href="/contact" className="bg-brand-primary text-white px-10 py-4 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-brand-secondary transition-all relative z-10 shadow-lg shrink-0">
               Seek Help Now
             </Link>
           </motion.div>

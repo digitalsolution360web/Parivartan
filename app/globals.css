@@ -118,7 +118,15 @@ body {
 
 @media (max-width: 768px) {
   .section-padding {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+  .section-margin {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .max-width-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
