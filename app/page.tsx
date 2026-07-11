@@ -27,7 +27,9 @@ import {
   Home as HomeIcon,
   Lock,
   Wind,
-  PhoneCall
+  PhoneCall,
+  ZoomIn,
+  X
 } from "lucide-react";
 
 // Animated Counter Component
@@ -60,6 +62,7 @@ const slides = [
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isZoomed, setIsZoomed] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -67,6 +70,20 @@ export default function Home() {
     }, 6000);
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    if (isZoomed) {
+      document.body.style.overflow = "hidden";
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setIsZoomed(false);
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = "";
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [isZoomed]);
 
   return (
     <div className="bg-white overflow-x-hidden">
@@ -368,24 +385,40 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="w-full lg:w-2/5"
+              className="w-full lg:w-2/5 cursor-pointer group/zoom"
+              onClick={() => setIsZoomed(true)}
             >
-              <div className="relative w-full h-full lg:rounded-[2rem] lg:overflow-hidden lg:shadow-2xl lg:border lg:border-slate-100 lg:min-h-[500px] flex items-center justify-center">
+              <div className="relative w-full h-full lg:rounded-[2rem] rounded-2xl overflow-hidden lg:shadow-2xl shadow-md border lg:border-slate-100 border-slate-200 lg:min-h-[500px] flex items-center justify-center">
+                {/* Desktop view */}
                 <div className="hidden lg:block absolute inset-0">
                   <Image
                     src="/16.webp"
                     alt="Center Rules and Guidelines"
                     fill
-                    className="object-cover"
+                    className="object-cover group-hover/zoom:scale-[1.03] transition-transform duration-500"
                   />
                 </div>
-                <div className="block lg:hidden w-full">
+                {/* Mobile view */}
+                <div className="block lg:hidden w-full relative">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/16.webp"
                     alt="Center Rules and Guidelines"
-                    className="w-full h-auto rounded-2xl rounded-2xl shadow-md border border-slate-100"
+                    className="w-full h-auto rounded-2xl shadow-md border border-slate-100 group-hover/zoom:scale-[1.01] transition-transform duration-500"
                   />
+                </div>
+                
+                {/* Hover overlay and zoom icon */}
+                <div className="absolute inset-0 bg-slate-900/0 group-hover/zoom:bg-slate-900/20 transition-all duration-300 flex items-center justify-center">
+                  <div className="bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-lg opacity-0 scale-90 group-hover/zoom:opacity-100 group-hover/zoom:scale-100 hidden md:flex transition-all duration-300 text-brand-primary">
+                    <ZoomIn className="w-5 h-5" />
+                  </div>
+                </div>
+
+                {/* Bottom badge for guidance */}
+                <div className="absolute bottom-4 right-4 bg-slate-900/70 backdrop-blur-sm text-white px-3 py-1.5 rounded-full flex items-center gap-1.5 text-[9px] font-bold tracking-wider uppercase border border-white/10 group-hover/zoom:bg-brand-primary transition-all duration-300">
+                  <ZoomIn className="w-3 h-3 text-brand-secondary" />
+                  View Schedule
                 </div>
               </div>
             </motion.div>
@@ -441,6 +474,44 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+      {/* Lightbox / Modal Zoom for Schedule */}
+      <AnimatePresence>
+        {isZoomed && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md cursor-zoom-out"
+            onClick={() => setIsZoomed(false)}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setIsZoomed(false)}
+              className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full transition-all border border-white/15 focus:outline-none focus:ring-2 focus:ring-brand-secondary z-50 cursor-pointer"
+              aria-label="Close schedule view"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            {/* Image Container */}
+            <motion.div
+              initial={{ scale: 0.95, y: 15 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 15 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative max-w-full max-h-[90vh] bg-white rounded-2xl overflow-hidden shadow-2xl p-1 md:p-2 cursor-default flex items-center justify-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/16.webp"
+                alt="Center Rules and Guidelines"
+                className="max-w-full max-h-[85vh] object-contain rounded-xl select-none"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
