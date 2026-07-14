@@ -1,19 +1,39 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Clock, Send, CheckCircle2 } from "lucide-react";
-import { useState } from "react";
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 
 export default function ContactPage() {
-  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormStatus("sending");
-    setTimeout(() => {
-      setFormStatus("sent");
-    }, 2000);
+
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("name") as string;
+    const phone = formData.get("phone") as string;
+    const message = formData.get("message") as string;
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, phone, message }),
+      });
+
+      if (res.ok) {
+        setFormStatus("sent");
+        formRef.current?.reset();
+      } else {
+        setFormStatus("error");
+      }
+    } catch {
+      setFormStatus("error");
+    }
   };
 
   return (
@@ -46,7 +66,7 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {[
               { title: "Direct Helpline", value: "084236 67868", icon: <Phone className="w-5 h-5" />, bg: "bg-brand-primary" },
-              { title: "Support Email", value: "info@jeevan.com", icon: <Mail className="w-5 h-5" />, bg: "bg-brand-accent" },
+              { title: "Support Email", value: "jeevanparivartan2@gmail.com ", icon: <Mail className="w-5 h-5" />, bg: "bg-brand-accent" },
               { title: "Center Location", value: "Lucknow, UP", icon: <MapPin className="w-5 h-5" />, bg: "bg-slate-900" },
               { title: "Availability", value: "Open 24/7", icon: <Clock className="w-5 h-5" />, bg: "bg-brand-secondary" },
             ].map((card, i) => (
@@ -80,29 +100,40 @@ export default function ContactPage() {
               className="lg:w-1/2"
             >
               <h2 className="text-2xl md:text-3xl font-bold mb-8 text-slate-900 tracking-tight">Direct Inquiry</h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Full Name</label>
-                    <input required type="text" className="w-full px-6 py-4 rounded-xl bg-white border border-slate-200 outline-none focus:border-brand-primary transition-all text-sm font-medium" placeholder="Ex: Rahul Kumar" />
+                    <input required name="name" type="text" className="w-full px-6 py-4 rounded-xl bg-white border border-slate-200 outline-none focus:border-brand-primary transition-all text-sm font-medium" placeholder="Ex: Rahul Kumar" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Phone Number</label>
-                    <input required type="tel" className="w-full px-6 py-4 rounded-xl bg-white border border-slate-200 outline-none focus:border-brand-primary transition-all text-sm font-medium" placeholder="+91 00000 00000" />
+                    <input required name="phone" type="tel" className="w-full px-6 py-4 rounded-xl bg-white border border-slate-200 outline-none focus:border-brand-primary transition-all text-sm font-medium" placeholder="+91 00000 00000" />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Message Detail</label>
-                  <textarea rows={5} className="w-full px-6 py-4 rounded-xl bg-white border border-slate-200 outline-none focus:border-brand-primary transition-all text-sm font-medium resize-none" placeholder="Tell us about the patient or your requirement..." />
+                  <textarea name="message" rows={5} className="w-full px-6 py-4 rounded-xl bg-white border border-slate-200 outline-none focus:border-brand-primary transition-all text-sm font-medium resize-none" placeholder="Tell us about the patient or your requirement..." />
                 </div>
                 <button
-                  disabled={formStatus !== "idle"}
-                  className="w-full bg-brand-primary text-white py-4 rounded-xl font-bold text-[11px] uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-brand-secondary transition-all disabled:opacity-50"
+                  disabled={formStatus === "sending" || formStatus === "sent"}
+                  className="w-full bg-brand-primary text-white py-4 rounded-xl font-bold text-[11px] uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-brand-secondary transition-all  cursor-pointer disabled:opacity-50"
                 >
                   {formStatus === "idle" && <><Send className="w-4 h-4" /> Finalize Inquiry</>}
-                  {formStatus === "sending" && <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />}
+                  {formStatus === "sending" && <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Sending...</>}
                   {formStatus === "sent" && <><CheckCircle2 className="w-4 h-4" /> Message Delivered</>}
+                  {formStatus === "error" && <><Send className="w-4 h-4" /> Try Again</>}
                 </button>
+                {formStatus === "sent" && (
+                  <p className="text-green-600 text-sm font-semibold text-center flex items-center justify-center gap-2">
+                    <CheckCircle2 className="w-4 h-4" /> Your enquiry has been sent to our team!
+                  </p>
+                )}
+                {formStatus === "error" && (
+                  <p className="text-red-500 text-sm font-semibold text-center flex items-center justify-center gap-2">
+                    <AlertCircle className="w-4 h-4" /> Something went wrong. Please try again or call us directly.
+                  </p>
+                )}
               </form>
             </motion.div>
 

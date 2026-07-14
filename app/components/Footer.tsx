@@ -82,7 +82,7 @@ const Footer = () => {
                 <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-brand-secondary shrink-0 border border-white/10">
                   <Mail className="w-5 h-5" />
                 </div>
-                <span className="text-xs font-bold tracking-wider opacity-90">info@jeevanparivartan.com</span>
+                <span className="text-xs font-bold tracking-wider opacity-90">jeevanparivartan2@gmail.com </span>
               </li>
             </ul>
           </div>
