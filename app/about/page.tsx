@@ -71,7 +71,7 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            <span className="text-brand-secondary font-bold text-[10px] tracking-[0.4em] uppercase mb-4 block">Our Legacy</span>
+            <span className="text-brand-secondary font-bold text-[10px] tracking-[0.4em] uppercase mb-4 pt-15 block">Our Legacy</span>
             <h1 className="text-2xl md:text-4xl font-bold text-white tracking-tight mb-6">
               Restoring Lives, <span className="text-brand-secondary">Rebuilding Hope</span>
             </h1>

@@ -68,7 +68,7 @@ export default function ServicesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            <span className="text-brand-secondary font-bold text-[10px] tracking-[0.4em] uppercase mb-4 block">Our Expertise</span>
+            <span className="text-brand-secondary font-bold text-[10px] tracking-[0.4em] uppercase mb-4 pt-15 block">Our Expertise</span>
             <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-6">
               Clinical <span className="text-brand-secondary">Excellence</span>
             </h1>
@@ -122,7 +122,7 @@ export default function ServicesPage() {
             <span className="text-emerald-600 font-bold text-[10px] mb-4 block tracking-[0.3em] uppercase">Premium Care</span>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">Luxury Healing Environment</h2>
           </motion.div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { text: "Bio-Centric Living", icon: <HomeIcon className="w-6 h-6" /> },
@@ -148,7 +148,7 @@ export default function ServicesPage() {
       {/* CTA - Closing Section */}
       <section className="section-padding bg-white">
         <div className="max-width-container">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

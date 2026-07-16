@@ -407,7 +407,7 @@ export default function Home() {
                     className="w-full h-auto rounded-2xl shadow-md border border-slate-100 group-hover/zoom:scale-[1.01] transition-transform duration-500"
                   />
                 </div>
-                
+
                 {/* Hover overlay and zoom icon */}
                 <div className="absolute inset-0 bg-slate-900/0 group-hover/zoom:bg-slate-900/20 transition-all duration-300 flex items-center justify-center">
                   <div className="bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-lg opacity-0 scale-90 group-hover/zoom:opacity-100 group-hover/zoom:scale-100 hidden md:flex transition-all duration-300 text-brand-primary">

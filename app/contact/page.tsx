@@ -49,7 +49,7 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            <span className="text-brand-secondary font-bold text-[10px] tracking-[0.4em] uppercase mb-4 block">Reach Out</span>
+            <span className="text-brand-secondary font-bold text-[10px] tracking-[0.4em] uppercase mb-4 pt-10 block">Reach Out</span>
             <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-6">
               Connect with our <span className="text-brand-secondary">Care Team</span>
             </h1>
