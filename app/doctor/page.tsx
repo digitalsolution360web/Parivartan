@@ -66,7 +66,7 @@ export default function DoctorPage() {
               <div className="flex flex-wrap gap-6 mb-8 border-y border-slate-100 py-6">
                 <div className="flex items-center gap-3">
                   <GraduationCap className="w-5 h-5 text-brand-primary" />
-                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">M.Sc. in Psychology & Rehabilitation</span>
+                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">BAMS</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Clock className="w-5 h-5 text-brand-primary" />
